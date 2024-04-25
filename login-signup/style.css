@@ -97,3 +97,53 @@ input{
 .redirect:hover{
     color: rgba(243, 183, 218);
 }
+
+.news-content {
+    height: 200px;
+    overflow-y: auto;
+}
+
+.news-story {
+    margin-bottom: 20px;
+}
+
+.white-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.news-column {
+    width: 45%;
+    float: left;
+    padding-left: 5%;
+}
+
+.adopted-column {
+    width: 45%;
+    float: right;
+    padding-right: 5%;
+}
+
+.news-content {
+    padding: 20px;
+}
+
+.adopted-content {
+    padding: 20px;
+}
+
+.news-column h2 {
+    text-align: center;
+}
+
+.adopted-column h2 {
+    text-align: center;
+}
+
+.landing-content h1 {
+    text-align: center;
+}
