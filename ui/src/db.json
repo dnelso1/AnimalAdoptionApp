@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Max",
+    "animalType": "Dog",
+    "age": 2,
+    "description": "Max is a friendly dog. He loves to play fetch and is great with kids.",
+    "image": "Max.jpg",
+    "breed": "Affenpinscher",
+    "isBoy": true,
+    "isAdopted": false
+  },
+  {
+    "id": 2,
+    "name": "Bella",
+    "animalType": "Dog",
+    "age": 4,
+    "description": "Bella is a well-behaved dog. She enjoys long walks and belly rubs.",
+    "image": "Bella.jpg",
+    "breed": "American Bulldog",
+    "isBoy": false,
+    "isAdopted": false
+  },
+  {
+    "id": 3,
+    "name": "Charlie",
+    "animalType": "Dog",
+    "age": 3,
+    "description": "Charlie is a cuddly dog. He loves nap time and is friendly with other dogs.",
+    "image": "Charlie.jpg",
+    "breed": "Airedale Terrier",
+    "isBoy": true,
+    "isAdopted": true
+  },
+  {
+    "id": 4,
+    "name": "Lucy",
+    "animalType": "Dog",
+    "age": 1,
+    "description": "Lucy is a playful puppy. She's still learning commands but is eager to please.",
+    "image": "Lucy.jpg",
+    "breed": "Afghan Hound",
+    "isBoy": false,
+    "isAdopted": false
+  },
+  {
+    "id": 5,
+    "name": "Simba",
+    "animalType": "Cat",
+    "age": 5,
+    "description": "Simba is an independent cat. He's low maintenance and likes quiet homes.",
+    "image": "Simba.jpg",
+    "breed": "Calico",
+    "isBoy": true,
+    "isAdopted": false
+  },
+  {
+    "id": 6,
+    "name": "Milo",
+    "animalType": "Cat",
+    "age": 3,
+    "description": "Milo is a charming cat. He likes playing with toys and climbing on cat trees.",
+    "image": "Milo.jpg",
+    "breed": "Tabby",
+    "isBoy": true,
+    "isAdopted": false
+  },
+  {
+    "id": 7,
+    "name": "Tiger",
+    "animalType": "Cat",
+    "age": 2,
+    "description": "Tiger is a fun-loving cat. He's curious and loves exploring around the house.",
+    "image": "Tiger.jpg",
+    "breed": "Minx",
+    "isBoy": true,
+    "isAdopted": false
+  },
+  {
+    "id": 8,
+    "name": "Luna",
+    "animalType": "Cat",
+    "age": 4,
+    "description": "Luna is a sweet cat. She's affectionate and loves to cuddle on the couch.",
+    "image": "Luna.jpg",
+    "breed": "Calico",
+    "isBoy": false,
+    "isAdopted": false
+  }
+]
