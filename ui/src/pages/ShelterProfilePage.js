@@ -1,6 +1,10 @@
 import React from 'react';
 import { MdOutlineModeEdit } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
+import { IoMdAddCircle } from "react-icons/io";
+
+
 
 
 function ShelterProfilePage() {
@@ -13,11 +17,20 @@ function ShelterProfilePage() {
                     <h3>123 Main St, Boston MA &emsp; &ensp;  bostonrescue@gmail.com &emsp; &ensp; (999)-999-9999</h3>
                 </div>
             </div>
-            <div>
-                <button class="edit_button"><MdOutlineModeEdit />&nbsp;Edit Profile</button>
-                <button class="edit_button"><IoSettingsOutline />&nbsp;Settings</button>
+            <div class="edit_buttons">
+            <a href="/add-animal">
+                <button class="edit_button">
+                    <span class="button_content"><IoMdAddCircle/>&nbsp;Add new animal</span>
+                </button>
+            </a>
+                <button class="edit_button">
+                    <span class="button_content"><MdOutlineModeEdit />&nbsp;Edit Profile</span>
+                </button>
+                <button class="edit_button">
+                    <span class="button_content"><IoSettingsOutline />&nbsp;Settings</span>
+                </button>
             </div>
-            <div>
+            <div class="content-buttons">
                 <button class="page_button">Newsfeed</button>
                 <button class="page_button">Available Pets</button>
                 <button class="page_button">Recently Adopted</button>

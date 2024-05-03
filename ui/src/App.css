@@ -61,6 +61,24 @@ button {
   color:white;
 }
 
+.button_content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit_buttons {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content_buttons {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .page_button:hover {
   background-color: rgb(119, 194, 104);
   color:rgb(255, 255, 255);
@@ -70,6 +88,52 @@ button {
   color: #61dafb;
 }
 
+form {
+  display: inline-block;
+  /* padding: 1em; */
+  border: 1px solid #ccc;
+  padding: 1.5em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+form li + li {
+  margin-top: 1.5em;
+  text-align: left;
+}
+
+.dispositions, .availabilities, .types{
+  margin-top:0.5em;
+}
+
+label {
+  /* Uniform size & alignment */
+  /* display: inline-block; */
+  min-width: 90px;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.row {
+  overflow: hidden;
+  padding-left: 1.5em;
+  /* padding: 10px; */
+}
+.col {
+  float: left;
+  margin-top:1.5em;
+  margin-bottom:1.5em;
+  margin-right: 1.5em;
+  /* width: 50% */
+}
+.submit_button:hover {
+  background-color:rgb(172, 168, 168);
+}
 
 
 @keyframes App-logo-spin {
