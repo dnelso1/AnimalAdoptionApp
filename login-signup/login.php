@@ -1,6 +1,12 @@
 <?php
+
     session_start();
     include("db.php");
+
+    # check if user is already logged in
+    if (isset($_SESSION['id'])) {
+        header("Location:index.php");
+    }
 
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
@@ -9,29 +15,32 @@
 
         if(!empty($email) && !is_numeric($email) && !empty($password))
         {
-            $query = "select * from user_information where email = '$email' limit 1";
-            $result = mysqli_query($con, $query);
-            if($result)
+            # check to see that user exists in database
+            $query = "SELECT * FROM user_information WHERE email = '$email' limit 1";
+            $result = mysqli_query($con, $query); 
+            if(mysqli_num_rows($result) == 1)
             {
-                if(mysqli_num_rows($result) == 1)
+                $user_info = mysqli_fetch_assoc($result);
+                # password verification
+                if($user_info['password'] == $password)
                 {
-                    $user_info = mysqli_fetch_assoc($result);
-                    if($user_info['password'] == $password)
-                    {
-                        header("location: index.php");
-                        die;
-                    }
+                    $_SESSION['id'] = $user_info['id'];
+                    header("Location: index.php");
+                    die;
+                }
+                else
+                {
+                    echo '<script>alert("Your email and/or password is incorrect")</script>';
                 }
             }
-            echo '<script>alert("Your email and/or password is not correct")</script>';
-        }
-        else{
-            echo '<script>alert("Your email and/or password is not correct")</script>';
-        }
+            else
+            {
+                echo '<script>alert("User not found")</script>';
+            }  
+        }    
     }
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,13 +79,8 @@
                 </div>
             </form>
 
-        </div>
-
-   
-
-        
+        </div>       
     </div>
-   
-   
+    
 </body>
 </html>
