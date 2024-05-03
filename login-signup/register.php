@@ -1,22 +1,49 @@
 <?php
+
     session_start();
     include("db.php");
+
+    # check if user is already logged in
+    if (isset($_SESSION['id'])) {
+        header("Location:index.php");
+    }
+
     if($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $full_name = $_POST['name'];
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if(!empty($email) && !is_numeric($email) && !empty($password))
+        # hash the password before storing in database (not working)
+        # $password = password_hash($password, PASSWORD_DEFAULT);
+
+        # query to check if user is already registered in the database
+        $query = "SELECT * FROM user_information where email = '$email'";
+        $result = mysqli_query($con, $query);
+
+        # check if email/password is valid and user is not already registered
+        if(empty($email) || is_numeric($email))
         {
-            $query = "insert into user_information (full_name, email, password) values ('$full_name', '$email', '$password')";
-            mysqli_query($con, $query);
-            echo '<script>alert("You are now registered!")</script>';
-            
+            echo '<script>alert("Your email is not valid")</script>';
         }
+        else if(empty($password) || strlen($password) < 8)
+        {
+            echo '<script>alert("Your password must be at least 8 characters long")</script>';
+
+        }
+        else if(mysqli_num_rows($result) > 0)
+        {
+            echo '<script>alert("This email is already registered")</script>';
+
+        }
+        # insert user data into database 
         else
         {
-            echo '<script>alert("Your email and/or password is not valid")</script>';
+            $query = "INSERT INTO user_information (full_name, email, password) VALUES ('$full_name', '$email', '$password')";
+            mysqli_query($con, $query);
+            header("refresh:1;url=login.php"); 
+            echo '<script>alert("You are now registered!")</script>';
+            
         }
     }
 ?>
@@ -64,12 +91,8 @@
             </form>
 
         </div>
-
-   
-
         
     </div>
-   
    
 </body>
 </html>
