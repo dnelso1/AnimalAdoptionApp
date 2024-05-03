@@ -1,6 +1,25 @@
 <?php
-
+    session_start();
     include("db.php");
+    
+    # check to see if session ID is set, else redirect to login page
+    if (!isset($_SESSION['id']))
+    {
+        header("Location:login.php");
+    }
+
+    # fetch user data from database, will need to be used for UPDATE functionality 
+    $id = $_SESSION['id'];
+    $query = "SELECT * FROM user_information WHERE id = '$id'";
+    $result = mysqli_query($con, $query);
+    if(mysqli_num_rows($result) == 1)
+    {
+        while ($user_info = mysqli_fetch_assoc($result))
+        {
+            $user_name = $user_info['name'];
+            $user_email = $user_info['email'];     
+        }
+    }
 
 ?>
 
@@ -17,7 +36,7 @@
 <div class="background">
         <div class="signup">
             <h1 id="create-header"> User Profile </h1>
-            <a href="login.php" class="redirect">Logout</a>
+            <a href="logout.php" class="redirect">Logout</a>
 
         </div> 
     </div>
