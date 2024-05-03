@@ -7,7 +7,7 @@ export default function Home() {
     const [ pets, setPets ] = useState([]);
     // const [filteredData, setFilteredData] = useState(jsonData);
     const [ searchTerm, setSearchTerm ] = useState("");
-    const API_KEY = "live_Uhu45k5OeEV0MN82685p9RMm803ZWvqtHoOVkXPCLKUvtQMNszT6a4lmD2IK3ifD";
+    const API_KEY = "";
     const petData = () => JSON.parse(JSON.stringify(jsonData));
 
     useEffect(() => {
@@ -70,7 +70,7 @@ export default function Home() {
                 </h1>
             ) : (
                 <>
-                    <div style={{
+                    <div className="w-full h-full" style={{
                         backgroundImage: "url(../../images/pets.jpg)",
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
@@ -94,6 +94,13 @@ export default function Home() {
                                         onChange={handleInputChange}
                                     />
                                 </form>
+
+                                <a>
+                                    <Link to={`/swipe`} className="inline-block bg-slate-300 py-2 px-6 rounded mt-8 hover:bg-slate-400
+                                                transition-all duration-200">
+                                        Swipe
+                                    </Link>
+                                </a>
                             </div>
 
                             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 my-6 lg:my-10">
