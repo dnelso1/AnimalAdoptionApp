@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Match</title>
+    <link rel="stylesheet" href="/static/PetApp.css">
+</head>
+<body>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element="<Home />"></Route>
+            <Route path="/:id/:name" element="<PetDetail />"></Route>
+            <Route path="/swipe" element="<SwipePets />"></Route>
+        </Routes>
+    </BrowserRouter>
+</body>
+</html>

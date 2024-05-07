@@ -1,0 +1,43 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetMatch</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <div class="background">
+        <div class="signup">
+            <h1 id="create-header"> Create an Account </h1>
+            <form method="POST" action="/register">
+                <!--link: https://www.w3schools.com/icons/ -->
+                <div class="container">
+                    <div class="user-info" id="name">
+                        <i class="material-icons">person</i>
+                        <input type="text" placeholder="Full Name" name="name" required>
+                    </div>
+
+                    <div class="user-info" id="email">
+                        <i class="material-icons">mail</i>
+                        <input type="email" placeholder="Email" name="email" required>
+                    </div>
+
+                    <div class="user-info" id="password">
+                        <i class="material-icons">lock</i>
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" id="createaccount" class="createbutton"> Register </button>
+                </div>
+                <div>
+                    <a href="/login" class="redirect">Already have an account? Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
