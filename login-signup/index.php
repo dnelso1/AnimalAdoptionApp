@@ -16,7 +16,7 @@
     {
         while ($user_info = mysqli_fetch_assoc($result))
         {
-            $user_name = $user_info['name'];
+            $user_name = $user_info['full_name'];
             $user_email = $user_info['email'];     
         }
     }
@@ -33,10 +33,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-<div class="background">
+    <div class="background">
         <div class="signup">
-            <h1 id="create-header"> User Profile </h1>
-            <a href="logout.php" class="redirect">Logout</a>
+            <h1 id="create-header"> Welcome <?php echo $user_name; ?></h1>
+                <div class="container">
+                    <div>
+                        <a href="edit_profile.php" class="editbutton" id="editbutton">Edit Profile</a>
+                    </div>
+                    <div>
+                        <a href="logout.php" class="logoutbutton">Logout</a>
+                    </div>
+                </div>
 
         </div> 
     </div>
