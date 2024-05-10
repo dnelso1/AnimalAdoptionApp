@@ -35,6 +35,18 @@
     position: relative;
 }
 
+.profile{
+    width: 90%;
+    max-width: 450px;
+    top: 15%;
+    left: 35%;
+    position: absolute;
+    align-items: center;
+    background: white;
+    padding: 50px 60px 70px;
+    text-align: center;
+ }
+
 .container{
     height: 250px;
 }
@@ -69,17 +81,13 @@ input{
 
 }
 
-.button-container button{
+.button-container button {
     background-color: rgb(202, 202, 202);
     color:  rgb(65, 62, 63);
     border: 0;
     height: 50px;
     border-radius: 10px;
     flex-basis: 60%;
-    
-    
-    
-   
 }
 
 .createbutton:hover{
@@ -98,52 +106,32 @@ input{
     color: rgba(243, 183, 218);
 }
 
-.news-content {
-    height: 200px;
-    overflow-y: auto;
-}
-
-.news-story {
-    margin-bottom: 20px;
-}
-
-.white-box {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+.editbutton, .logoutbutton {
+    width: 100%;
+    border-radius: 5px;
+    padding:10px 30px;
+    display: block;
     text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 10px;
+    text-decoration: none;
 }
 
-.news-column {
-    width: 45%;
-    float: left;
-    padding-left: 5%;
+.editbutton {
+    background-color: rgb(202, 202, 202);
+    color:  rgb(65, 62, 63);
+
+}
+.editbutton:hover{
+    color: white;
 }
 
-.adopted-column {
-    width: 45%;
-    float: right;
-    padding-right: 5%;
+.logoutbutton {
+    color: rgb(202, 202, 202);
+    background-color:  rgb(65, 62, 63);
 }
 
-.news-content {
-    padding: 20px;
-}
-
-.adopted-content {
-    padding: 20px;
-}
-
-.news-column h2 {
-    text-align: center;
-}
-
-.adopted-column h2 {
-    text-align: center;
-}
-
-.landing-content h1 {
-    text-align: center;
+.logoutbutton:hover{
+    color: rgba(243, 183, 218);
 }
