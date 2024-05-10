@@ -1,0 +1,33 @@
+.swipeButtons {
+    position: fixed;
+    bottom: 2vh;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.swipeButtons .MuiIconButton-root {
+    background-color: white;
+    box-shadow: 0 10px 13px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.swipeButtons__undo {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #915dd1 !important;
+}
+
+.swipeButtons__left {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #ec5e6f !important;
+}
+
+.swipeButtons__right {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: #76e2b3 !important;
+}
