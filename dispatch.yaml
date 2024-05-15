@@ -1,0 +1,5 @@
+dispatch:
+  - url: "*/api/*"
+    service: flask-service
+  - url: "*/*"
+    service: react-service

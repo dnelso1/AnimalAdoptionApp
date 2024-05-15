@@ -1,0 +1,14 @@
+service: shelter-profile  # Name of the service
+runtime: python39  # or any appropriate runtime if you're using a backend
+
+handlers:
+  # Handle requests for static files (CSS, JS, images, etc.)
+  - url: /static
+    static_dir: build/static  # Update the path to the actual location of your static files
+
+  # Handle requests for the Flask application
+  - url: .*
+    script: auto
+
+# Add any additional configuration needed, such as environment variables or instance settings
+# ...

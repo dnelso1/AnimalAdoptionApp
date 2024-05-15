@@ -1,0 +1,22 @@
+service: landing-page
+runtime: python39  # or any other appropriate runtime
+
+handlers:
+  # Handle requests for static files (CSS, JS, images, etc.)
+  - url: /static
+    static_dir: static
+
+  # Handle requests for the landing page
+  - url: /landing
+    static_files: landing.html  # Update the path to the actual location of landing.html
+    upload: landing.html  # Update the path to the actual location of landing.html
+
+  # Serve the pets.jpg image
+  - url: /pets.jpg
+    static_files: static/pets.jpg  # Update the path to the actual location of pets.jpg
+    upload: static/pets.jpg  # Update the path to the actual location of pets.jpg
+
+  # Handle requests for other frontend routes
+  - url: /.*
+    static_files: build/index.html  # Update the path to the actual location of your index.html file
+    upload: build/index.html  # Update the path to the actual location of your index.html file
