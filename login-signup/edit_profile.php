@@ -22,17 +22,28 @@
        }
    }
 
-   if($_SERVER['REQUEST_METHOD'] == "POST")
+   if(isset($_POST['updateaccount']))
     {
         $new_name = $_POST['new_name'];
         $new_email = $_POST['new_email'];
         $new_password = $_POST['new_password'];
+        $new_password = password_hash($new_password, PASSWORD_DEFAULT);
         
         $query = "UPDATE user_information SET full_name = '$new_name', email = '$new_email', password = '$new_password' WHERE id = '$id'";
         $result = mysqli_query($con, $query);
         header("refresh:1;url=index.php"); 
         echo '<script>alert("Your profile was updated!")</script>';
         
+    }
+
+    if(isset($_POST['deleteaccount']))
+    {
+        $query = "DELETE FROM user_information WHERE id = '$id'";
+        $result = mysqli_query($con, $query);
+        session_unset();
+        session_destroy();
+        header("refresh:1;url=login.php"); 
+        echo '<script>alert("Your profile was deleted!")</script>';   
     }
 ?>
 
@@ -64,11 +75,14 @@
 
                     <div class="user-info" id="new_password">
                         <i class="material-icons">lock</i>
-                        <input type="password" value="<?php echo $user_password; ?>" name="new_password">
+                        <input type="password" placeholder="Enter new password" name="new_password">
                     </div>
                 </div>
                 <div class="button-container">
-                    <button type="submit" id="updateaccount" class="createbutton">Update</button>
+                    <button type="submit" id="updateaccount" name="updateaccount" class="createbutton">Update</button>
+                </div>
+                <div class="button-container">
+                    <button type="submit" id="deleteaccount" name="deleteaccount" class="createbutton">Delete Profile</button>
                 </div>
                 <div>
                     <a href="index.php" class="redirect">Cancel</a>

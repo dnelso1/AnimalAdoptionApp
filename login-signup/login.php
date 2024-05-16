@@ -20,17 +20,17 @@
             $result = mysqli_query($con, $query); 
             if(mysqli_num_rows($result) == 1)
             {
-                $user_info = mysqli_fetch_assoc($result);
+                while ($user_info = mysqli_fetch_assoc($result)) {
                 # password verification
-                if($user_info['password'] == $password)
-                {
-                    $_SESSION['id'] = $user_info['id'];
-                    header("Location: index.php");
-                    die;
-                }
-                else
-                {
-                    echo '<script>alert("Your email and/or password is incorrect")</script>';
+                    if(password_verify($password, $user_info['password'])) {
+                        $_SESSION['id'] = $user_info['id'];
+                        header("Location: index.php");
+                        die;
+                    }
+                    else
+                    {
+                        echo '<script>alert("Your email and/or password is incorrect")</script>';
+                    }
                 }
             }
             else

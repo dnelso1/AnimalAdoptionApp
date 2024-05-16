@@ -14,8 +14,8 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        # hash the password before storing in database (not working)
-        # $password = password_hash($password, PASSWORD_DEFAULT);
+        # hash the password before storing in database 
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         # query to check if user is already registered in the database
         $query = "SELECT * FROM user_information where email = '$email'";

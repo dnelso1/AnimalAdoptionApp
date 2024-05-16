@@ -8,7 +8,7 @@
         header("Location:login.php");
     }
 
-    # fetch user data from database, will need to be used for UPDATE functionality 
+    # fetch user data from database
     $id = $_SESSION['id'];
     $query = "SELECT * FROM user_information WHERE id = '$id'";
     $result = mysqli_query($con, $query);
