@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
 function AddNewAnimalPage() {
     const dispositions = ['Good with other animals', 'Good with children', 'Animal must be leashed at all times']
@@ -8,6 +9,7 @@ function AddNewAnimalPage() {
         cat: ["Persian", "Maine Coon", "Siamese", "American Shorthair", "Sphynx", "Bengal", "Ragdoll", "Russian Blue", "Cornish Rex", "Other"],
         other: []
     }
+    const image_labels = ["Image 1 URL (required):", "Image 2 URL:", "Image 3 URL:", "Image 4 URL:", "Image 5 URL:"]
 
     const [checkedState, setCheckedState] = useState([false, false, false]);
     const [name, setName] = useState('');
@@ -15,7 +17,17 @@ function AddNewAnimalPage() {
     const [breed, setBreed] = useState('');
     const [description, setDescription] = useState('');
     const [newsBlurb, setNewsBlurb] = useState('');
+    const [images, setImages] = useState(['', '', '', '', '']);
+    const [otherType, setOtherType] = useState('');
+    const [availability, setAvailability] = useState('Available');
 
+    const handleImageChange = (position, e) => {
+        const updatedImageState = images.map((item, index) =>
+            index === position ? e.target.value : item
+        );
+        setImages(updatedImageState)
+       }
+    
     const handleCheckedStateChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
                 index === position ? !item : item
@@ -43,6 +55,56 @@ function AddNewAnimalPage() {
         setType(type);
     }
 
+    const handleOtherTypeChange = (e) => {
+        setOtherType(e.target.value)
+    }
+
+    const handleAvailabilityChange = (availability) => {
+        setAvailability(availability);
+    }
+
+    // Handle form submission
+    const handleSubmit = async () => {
+        let sentType = '';
+        let sentDisposition = '';
+        
+
+        // Format type value
+        if (animalType === 'other') {
+            sentType = otherType;
+        } else {
+            sentType = animalType;
+        }
+
+
+        // Format disposition value
+        let i = 0;
+        while (i < dispositions.length) {
+            if (checkedState[i] === true) {
+                sentDisposition += dispositions[i] + ',';
+            }
+            i++;
+        }
+        sentDisposition = sentDisposition.slice(0, -1);
+
+
+        const newAnimal = {
+            "name": name,
+            "type": sentType,
+            "breed": breed,
+            "disposition": sentDisposition,
+            "availability": availability,
+            "description": description,
+            "news_blurb": newsBlurb,
+            "images": images
+        }
+        const response = await axios.post('http://127.0.0.1:8010/add-animal-profile', newAnimal);
+        console.log(response)
+
+        // console.log("submission worked!");
+        // console.log(newAnimal);
+    }
+
     // const getBreedsForType = () => {
     //     const breedsForType = breeds[type];
     // }
@@ -56,181 +118,219 @@ function AddNewAnimalPage() {
                     <h3>123 Main St, Boston MA &emsp; &ensp;  bostonrescue@gmail.com &emsp; &ensp; (999)-999-9999</h3>
                 </div>
             </div>
-            <form>
-                <h2>Add a new animal to your shelter profile:</h2>
-                <div class="row">
-                    <ul class="col">
-                        <li>
-                            <label for="name">Name:</label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                value={name}
-                                onChange={handleNameChange}
-                            />
-                        </li>
-                        <li>
+            <div class="row">
+                <form class="col" onSubmit={(e) => {e.preventDefault();}}>
+                    <h2>Add a new animal to your shelter profile:</h2>
+                    <div class="row">
+                        <ul class="col">
+                            <li>
+                                <label for="name">Name:</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={name}
+                                    onChange={handleNameChange}
+                                />
+                            </li>
+                            <li>
+                                <fieldset>
+                                    <legend>Type:</legend>
+                                    <ul>
+                                        <li class="types">
+                                            <input
+                                                    type="radio"
+                                                    id="dog"
+                                                    name="type"
+                                                    value="dog"
+                                                    checked={animalType === "dog"}
+                                                    onChange={() => handleTypeChange("dog")}
+                                            />
+                                            <label for="dog">Dog</label>
+                                        </li>
+                                        <li class="types">
+                                            <input
+                                                    type="radio"
+                                                    id="cat"
+                                                    name="type"
+                                                    value="cat"
+                                                    checked={animalType === "cat"}
+                                                    onChange={() => handleTypeChange("cat")}
+                                            />
+                                            <label for="cat">Cat</label>
+                                        </li>
+                                        <li class="types">
+                                            <input
+                                                    type="radio"
+                                                    id="other"
+                                                    name="type"
+                                                    value="other"
+                                                    checked={animalType === "other"}
+                                                    onChange={() => handleTypeChange("other")}
+                                            />
+                                            <label for="other">Other</label>
+                                        </li>
+                                        <li>
+                                            <label for="other-specify">If other, please specify:</label>
+                                            <input
+                                                type="text"
+                                                id="other-specify"
+                                                name="other-type"
+                                                value={otherType}
+                                                onChange={handleOtherTypeChange}
+                                            />
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </li>
+                            <li>
+                                <label>Breed:</label>
+                                <select
+                                    name="breed"
+                                    id="breed"
+                                    value={breed}
+                                    onChange={handleBreedChange}
+                                >
+                                    <option key='' value=''>Please select a breed</option>
+                                    {   
+                                        breeds[animalType].map((breed) =>
+                                            <option key={breed} value={breed}>{breed}</option>
+                                        )
+                                    }
+                                </select>
+                            </li>
+                            <li class="disposition-section">
+                                <fieldset>
+                                    <legend>Disposition:</legend>
+                                    {dispositions.map(
+                                        (disposition, index) => {
+                                            return (
+                                                    <li class="dispositions" key={`disposition-${index}`}>
+                                                        <input
+                                                            type="checkbox"
+                                                            id={index}
+                                                            name={disposition}
+                                                            value={disposition}
+                                                            checked={checkedState[index]}
+                                                            onChange={() => handleCheckedStateChange(index)}
+                                                        />
+                                                        <label for={`disposition-${index}`}>
+                                                            {disposition}
+                                                        </label>
+                                                    </li>
+                                            )
+                                        }
+                                    )}
+                                </fieldset>
+                            </li>
+                            <li>
+                                <fieldset>
+                                    <legend>Availability:</legend>
+                                    <ul>
+                                        <li class="availabilities">
+                                            <input
+                                                type="radio"
+                                                id="available"
+                                                name="availability"
+                                                value="available"
+                                                checked={availability === "Available"}
+                                                onChange={() => handleAvailabilityChange("Available")}
+                                            />
+                                            <label for="available">Available</label>
+                                        </li>
+                                        <li class="availabilities">
+                                            <input
+                                                type="radio"
+                                                id="not_available"
+                                                name="availability"
+                                                value="not_available"
+                                                checked={availability === "Not available"}
+                                                onChange={() => handleAvailabilityChange("Not available")}
+                                            />
+                                            <label for="not_available">Not available</label>
+                                        </li>
+                                        <li class="availabilities">
+                                            <input
+                                                type="radio"
+                                                id="pending"
+                                                name="availability"
+                                                value="pending"
+                                                checked={availability === "Pending"}
+                                                onChange={() => handleAvailabilityChange("Pending")}
+                                            />
+                                            <label for="pending">Pending</label>
+                                        </li>
+                                        <li class="availabilities">
+                                            <input
+                                                type="radio"
+                                                id="adopted"
+                                                name="availability"
+                                                value="adopted"
+                                                checked={availability === "Adopted"}
+                                                onChange={() => handleAvailabilityChange("Adopted")}
+                                            />
+                                            <label for="adopted">Adopted</label>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </li>
+                        </ul>
+                        <ul class="col">
+                            <li>
+                                <legend for="description">Description:</legend>
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    value={description}
+                                    onChange={handleDescriptionChange}
+                                    rows="10"
+                                    cols="50">
+                                </textarea>
+                            </li>
+                            <li>
+                                <legend for="news_blurb">News Blurb:</legend>
+                                <textarea
+                                    id="news_blurb"
+                                    name="news_blurb"
+                                    value={newsBlurb}
+                                    onChange={handleNewsBlurbChange}
+                                    rows="10"
+                                    cols="50">
+                                </textarea>
+                            </li>
+                        </ul>
+                        <ul class="col">
+                            <legend>Please provide at least one image:</legend>
                             <fieldset>
-                                <legend>Type:</legend>
-                                <ul>
-                                    <li class="types">
-                                        <input
-                                                type="radio"
-                                                id="dog"
-                                                name="type"
-                                                value="dog"
-                                                checked={animalType === "dog"}
-                                                onChange={() => handleTypeChange("dog")}
-                                        />
-                                        <label for="dog">Dog</label>
-                                    </li>
-                                    <li class="types">
-                                        <input
-                                                type="radio"
-                                                id="cat"
-                                                name="type"
-                                                value="cat"
-                                                checked={animalType === "cat"}
-                                                onChange={() => handleTypeChange("cat")}
-                                        />
-                                        <label for="cat">Cat</label>
-                                    </li>
-                                    <li class="types">
-                                        <input
-                                                type="radio"
-                                                id="other"
-                                                name="type"
-                                                value="other"
-                                                checked={animalType === "other"}
-                                                onChange={() => handleTypeChange("other")}
-                                        />
-                                        <label for="other">Other</label>
-                                    </li>
-                                    {/* Need to add functionality to specify other textbox */}
-                                    <li>
-                                        <label for="other-specify">If other, please specify:</label>
-                                        <input
-                                            type="text"
-                                            id="other-specify"
-                                        />
-                                    </li>
-                                </ul>
-                            </fieldset>
-                        </li>
-                        <li>
-                            <label>Breed:</label>
-                            <select
-                                name="breed"
-                                id="breed"
-                                value={breed}
-                                onChange={handleBreedChange}
-                            >
-                                <option key='' value=''>Please select a breed</option>
-                                {   
-                                    breeds[animalType].map((breed) =>
-                                        <option key={breed} value={breed}>{breed}</option>
-                                    )
-                                }
-                            </select>
-                        </li>
-                        <li class="disposition-section">
-                            <fieldset>
-                                <legend>Disposition:</legend>
-                                {dispositions.map(
-                                    (disposition, index) => {
+                                {image_labels.map(
+                                    (image, index) => {
                                         return (
                                             <>
-                                                <li class="dispositions">
+                                                <li class="urls-images" key={`image-${index}`}>
                                                     <input
-                                                        type="checkbox"
-                                                        id={`disposition-${index}`}
-                                                        name={disposition}
-                                                        value={disposition}
-                                                        checked={checkedState[index]}
-                                                        onChange={() => handleCheckedStateChange(index)}
+                                                        type="url"
+                                                        name="image_urls"
+                                                        id={`image-${index}`}
+                                                        value={images[index]}
+                                                        onChange={(e) => handleImageChange(index, e)}
+                                                        placeholder="https://www.example.com/image"
+                                                        size="34"
                                                     />
-                                                    <label for={`disposition-${index}`}>
-                                                        {disposition}
-                                                    </label>
+                                                    <img src={images[index]} width="125" height="125" alt=""></img>
                                                 </li>
-                                            </>
+                                                
+                                            </>       
                                         )
                                     }
                                 )}
                             </fieldset>
-                        </li>
-                        <li>
-                            <fieldset>
-                                <legend>Availability:</legend>
-                                <ul>
-                                    <li class="availabilities">
-                                        <input
-                                            type="radio"
-                                            id="not_available"
-                                            name="availability"
-                                            value="not_available"
-                                        />
-                                        <label for="not_available">Not available</label>
-                                    </li>
-                                    <li class="availabilities">
-                                        <input
-                                            type="radio"
-                                            id="available"
-                                            name="availability"
-                                            value="available"
-                                        />
-                                        <label for="available">Available</label>
-                                    </li>
-                                    <li class="availabilities">
-                                        <input
-                                            type="radio"
-                                            id="pending"
-                                            name="availability"
-                                            value="pending"
-                                        />
-                                        <label for="pending">Pending</label>
-                                    </li>
-                                    <li class="availabilities">
-                                        <input
-                                            type="radio"
-                                            id="adopted"
-                                            name="availability"
-                                            value="adopted"
-                                        />
-                                        <label for="adopted">Adopted</label>
-                                    </li>
-                                </ul>
-                            </fieldset>
-                        </li>
-                    </ul>
-                    <ul class="col">
-                        <li>
-                            <legend for="description">Description:</legend>
-                            <textarea
-                                id="description"
-                                name="description"
-                                value={description}
-                                onChange={handleDescriptionChange}
-                                rows="10"
-                                cols="50">
-                            </textarea>
-                        </li>
-                        <li>
-                            <legend for="news_blurb">News Blurb:</legend>
-                            <textarea
-                                id="news_blurb"
-                                name="news_blurb"
-                                value={newsBlurb}
-                                onChange={handleNewsBlurbChange}
-                                rows="10"
-                                cols="50">
-                            </textarea>
-                        </li>
-                    </ul>
-                </div>
-                <button type="submit" class="submit_button">Submit</button>
-            </form>
+                            
+                        </ul>
+                    </div>
+                    <button type="submit" class="submit_button" onClick={handleSubmit}>Submit</button>
+                </form>
+            </div>
+            
         </article>
         </>
     )

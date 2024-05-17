@@ -119,9 +119,12 @@ label {
   padding-right: 10px;
 }
 
-.row {
+.row, .forms {
   overflow: hidden;
   padding-left: 1.5em;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   /* padding: 10px; */
 }
 .col {
@@ -133,6 +136,13 @@ label {
 }
 .submit_button:hover {
   background-color:rgb(172, 168, 168);
+}
+
+.urls-images {
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  align-items:start;
 }
 
 
