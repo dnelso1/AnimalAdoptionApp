@@ -60,6 +60,11 @@ function EditShelterPage() {
         }
         const response = await axios.put(`http://127.0.0.1:8010/update-shelter/${id}`, data)
         console.log(response)
+        if (response.status === 200) {
+            window.alert('Your profile was successfully updated!')
+        } else {
+            window.alert("Your profile was unable to be updated.")
+        }
     }
 
     return(
@@ -71,6 +76,7 @@ function EditShelterPage() {
                     <label for="name">Name:</label>
                     <input
                         id="name"
+                        class="shelter-input"
                         name="name" 
                         type="text"
                         value={name}
@@ -81,6 +87,7 @@ function EditShelterPage() {
                     <label for="address">Address:</label>
                     <input
                         id="address"
+                        class="shelter-input"
                         name="address"
                         type="text"
                         value={address}
@@ -91,6 +98,7 @@ function EditShelterPage() {
                     <label for="email">Email:</label>
                     <input
                         id="email"
+                        class="shelter-input"
                         name="email"
                         type="text"
                         value={email}
@@ -101,6 +109,7 @@ function EditShelterPage() {
                     <label for="phone_number">Phone number:</label>
                     <input
                         id="phone_number"
+                        class="shelter-input"
                         name="phone_number"
                         type="text"
                         value={phoneNumber}
@@ -111,6 +120,7 @@ function EditShelterPage() {
                     <label for="website">Website address:</label>
                     <input
                         id="website"
+                        class="shelter-input"
                         name="website"
                         type="text"
                         value={website}

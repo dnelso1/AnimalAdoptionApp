@@ -90,7 +90,7 @@ def add_animal_profile():
                                             'animal_id': id})
 
         conn.commit()
-        return ({'id': id})
+        return {'id': id}, 200
 
 # Get a shelter
 @app.route('/get-shelter/<int:id>', methods=['GET'])
