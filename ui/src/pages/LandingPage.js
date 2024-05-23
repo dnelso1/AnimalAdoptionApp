@@ -48,7 +48,7 @@ function LandingPage() {
                     <h2>Demo Buttons</h2>
                     <div class="button-container">
                         {/* Update this line */}
-                        <a href="/shelter-page" class="shelter-profile-link">Shelter Profile</a>
+                        <a href="/shelter" class="shelter-profile-link">Shelter Profile</a>
                         <a href="/home">Animal Profile Page</a>
                     </div>
                 </div>

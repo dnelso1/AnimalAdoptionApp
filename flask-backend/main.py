@@ -15,6 +15,10 @@ CORS(app)
 
 logger = logging.getLogger()
 
+# Error messages
+ERROR_SHELTER_NOT_FOUND = {"Error": "No shelter with this id exists"}
+
+
 # Sets up connection pool for the app
 def init_connection_pool() -> sqlalchemy.engine.base.Engine:
     if os.environ.get('INSTANCE_CONNECTION_NAME'):
@@ -49,6 +53,7 @@ def get_shelter_names():
             shelter_names.append(row._asdict()["shelter_name"])
         return {'shelter_names': shelter_names}
 
+# Add animal profile
 @app.route('/add-animal-profile', methods=['POST'])
 def add_animal_profile():
     with db.connect() as conn:
@@ -87,7 +92,45 @@ def add_animal_profile():
         conn.commit()
         return ({'id': id})
 
+# Get a shelter
+@app.route('/get-shelter/<int:id>', methods=['GET'])
+def get_shelter(id):
+    with db.connect() as conn:
+        stmt = sqlalchemy.text(
+            'SELECT shelter_name, address, email, phone_number, website_link FROM shelters WHERE shelter_id=:shelter_id'
+        )
+        row = conn.execute(stmt, parameters={'shelter_id': id}).one_or_none()
+        if row is None:
+            return ERROR_SHELTER_NOT_FOUND, 404
+        shelter = row._asdict()
+        print(shelter)
+        return shelter
 
+# Update a shelter
+@app.route('/update-shelter/<int:id>', methods=['PUT'])
+def update_shelter(id):
+    with db.connect() as conn:
+        stmt = sqlalchemy.text(
+            'SELECT shelter_name, address, email, phone_number, website_link FROM shelters WHERE shelter_id=:shelter_id'
+        )
+        row = conn.execute(stmt, parameters={'shelter_id': id}).one_or_none()
+        if row is None:
+            return ERROR_SHELTER_NOT_FOUND, 404
+        content = request.get_json()
+        stmt = sqlalchemy.text(
+            'UPDATE shelters '
+            'SET shelter_name = :shelter_name, address = :address, email = :email, phone_number = :phone_number, website_link = :website_link '
+            'WHERE shelter_id = :shelter_id'
+        )
+        conn.execute(stmt, parameters={'shelter_name': content['name'],
+                                       'address': content['address'],
+                                       'email': content['email'],
+                                       'phone_number': content['phone_number'],
+                                       'website_link': content['website'],
+                                       'shelter_id': id})
+        conn.commit()
+        return 'Successfully updated shelter', 200
+        
 
 
 if __name__ == '__main__':
