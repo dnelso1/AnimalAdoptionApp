@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ShelterProfilePage from './pages/ShelterProfilePage';
 import AddNewAnimalPage from './pages/AddNewAnimalPage';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
 
             <main>
               <Routes>
-                <Route path="/" element={<ShelterProfilePage />} />
+                <Route path="/shelter-page" element={<ShelterProfilePage />} />
                 <Route path="/add-animal" element={<AddNewAnimalPage />} />
+                <Route path="/" element={<LandingPage />}/>
               </Routes>
             </main>
 
