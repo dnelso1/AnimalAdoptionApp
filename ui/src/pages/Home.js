@@ -28,7 +28,9 @@ export default function Home() {
     const filterPets = (searchTerm) => {
         try {
             const filteredData = petData().filter((item) =>
-                item.name.toLowerCase().includes(searchTerm.toLowerCase())
+                Object.values(item).slice(1).some(val =>
+                    String(val).toLowerCase().includes(searchTerm.toLowerCase()))
+                // item.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setPets(filteredData);
         } catch (e) {
@@ -96,7 +98,7 @@ export default function Home() {
                                 </form>
 
                                 <a>
-                                    <Link to={`/swipe`} className="inline-block bg-slate-300 py-2 px-6 rounded mt-8 hover:bg-slate-400
+                                    <Link to={`/swipe`} className="inline-block bg-slate-300 py-2 px-6 rounded hover:bg-slate-400
                                                 transition-all duration-200">
                                         Swipe
                                     </Link>

@@ -10,7 +10,7 @@ const PetCard = ({ pet }) => {
                 loading="lazy"
                 className="rounded md:h-72 w-full object-cover"
             />
-            <h3 className="text-2xl font-bold mt-4">{pet.name}<span className="text-lg text-slate-600"> - {pet.breed}</span></h3>
+            <h3 className="text-2xl font-bold mt-4">{pet.name} ({pet.age})<span className="text-lg text-slate-600"> - {pet.breed}</span></h3>
             <p className="text-slate-600">{(pet.isAdopted) ? "Adopted" : "Available"}</p>
         </article>
     )
