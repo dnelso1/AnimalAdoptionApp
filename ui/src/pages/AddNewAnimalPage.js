@@ -100,6 +100,22 @@ function AddNewAnimalPage() {
         }
         const response = await axios.post('http://127.0.0.1:8010/add-animal-profile', newAnimal);
         console.log(response)
+        if (response.status === 200) {
+            setCheckedState([false, false, false]);
+            setName('');
+            setType('dog');
+            setBreed('');
+            setDescription('');
+            setNewsBlurb('');
+            setImages(['', '', '', '', '']);
+            setOtherType('');
+            setAvailability('Available');
+
+            window.alert("Your new animal profile was successfully added!");
+        }
+        else {
+            window.alert('We are unable to add your animal profile.')
+        }
 
         // console.log("submission worked!");
         // console.log(newAnimal);
