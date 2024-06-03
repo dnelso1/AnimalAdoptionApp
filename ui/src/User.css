@@ -1,0 +1,148 @@
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ariel', sans-serif;
+  box-sizing: border-box;
+}
+
+.background{
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(45deg, rgba(243, 183, 218, 0.8), rgba(243, 183, 218, 0.8)) ,url('pets.jpg');
+  background-position: center;
+  background-size: cover;
+  position: relative; 
+}
+
+.signup{
+ width: 90%;
+ max-width: 450px;
+ top: 15%;
+ left: 30%;
+ position: absolute;
+ align-items: center;
+ background: white;
+ padding: 50px 60px 70px;
+ text-align: center;
+}
+
+.signup h1{
+  font-size: 25px;
+  margin-bottom: 40px;
+  color: rgb(65, 62, 63);
+  position: relative;
+}
+
+.profile{
+  width: 90%;
+  max-width: 450px;
+  top: 15%;
+  left: 35%;
+  position: absolute;
+  align-items: center;
+  background: white;
+  padding: 50px 60px 70px;
+  text-align: center;
+}
+
+.container{
+  height: 250px;
+}
+
+.user-info{
+  background-color: rgb(202, 202, 202);
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.user-info .icon{
+  margin-left: 10px;
+  color: grey;
+}
+
+input{
+  background: transparent;
+  width: 100%;
+  padding: 20px;
+  border: 0;
+}
+
+
+.button-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 75px;
+}
+
+.button-container button {
+  background-color: rgb(202, 202, 202);
+  color:  rgb(65, 62, 63);
+  border: 0;
+  height: 50px;
+  border-radius: 10px;
+  flex-basis: 60%;
+}
+
+.createbutton:hover{
+  background: rgba(243, 183, 218);
+  color:  rgb(65, 62, 63);
+  
+}
+
+.redirect{
+  color:  rgb(65, 62, 63);
+  font-size: medium;
+  text-align: center;
+}
+
+.redirect:hover{
+  color: rgba(243, 183, 218);
+}
+
+.editbutton, .logoutbutton {
+  width: 87%;
+  border-radius: 5px;
+  padding:10px 30px;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px;
+  text-decoration: none;
+  
+}
+
+.editbutton {
+  background-color: rgb(202, 202, 202);
+  color:  rgb(65, 62, 63);
+
+}
+.editbutton:hover{
+  color: white;
+}
+
+.logoutbutton {
+  color: rgb(202, 202, 202);
+  background-color:  rgb(65, 62, 63);
+}
+
+.logoutbutton:hover{
+  color: rgba(243, 183, 218);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
