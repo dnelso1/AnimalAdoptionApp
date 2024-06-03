@@ -52,7 +52,7 @@ def get_shelter_names():
         for row in rows:
             shelter_names.append(row._asdict()["shelter_name"])
         return {'shelter_names': shelter_names}
-
+    
 # Add animal profile
 @app.route('/add-animal-profile', methods=['POST'])
 def add_animal_profile():
@@ -132,7 +132,32 @@ def update_shelter(id):
                                        'shelter_id': id})
         conn.commit()
         return 'Successfully updated shelter', 200
-        
+
+# Get animal profiles for a shelter
+@app.route('/get-shelter-animals/<int:id>', methods=['GET'])
+def get_shelter_animals(id):
+    with db.connect() as conn:
+        stmt = sqlalchemy.text(
+            'SELECT animal_id, name, type, breed, age, gender, disposition, availability, news_item, description '
+            'FROM animal_profiles WHERE shelter_id = :shelter_id'
+            )
+        stmt_2 = sqlalchemy.text(
+            'SELECT picture_url FROM animal_pictures WHERE animal_id = :animal_id'
+        )
+        animals = []
+        rows = conn.execute(stmt, parameters={'shelter_id': id})
+        for row in rows:
+            animal = row._asdict()
+            animal_id = animal["animal_id"]
+            pictures = []
+            rows_2 = conn.execute(stmt_2, parameters={'animal_id': animal_id})
+            for row in rows_2:
+                picture = row._asdict()
+                pictures.append(picture["picture_url"])
+            animal['pictures'] = pictures
+            animals.append(animal)
+
+        return animals;  
 
 
 if __name__ == '__main__':

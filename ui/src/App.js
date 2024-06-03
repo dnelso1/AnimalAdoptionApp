@@ -7,6 +7,8 @@ import LandingPage from "./pages/LandingPage";
 import ShelterPage from "./pages/ShelterPage";
 import AddNewAnimalPage from "./pages/AddNewAnimalPage";
 import EditShelterPage from "./pages/EditShelterPage";
+import ShelterAnimals from "./pages/ShelterAnimals";
+import ShelterAnimalDetails from "./pages/ShelterAnimalDetails";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/shelter" element={<ShelterPage />} />
             <Route path="/shelter/add-animal" element={<AddNewAnimalPage />} />
             <Route path="shelter/edit-profile" element={<EditShelterPage />}/>
+            <Route path="shelter/animals" element={<ShelterAnimals />}/>
+            <Route path="shelter/animal-details" element={<ShelterAnimalDetails />}/>
         </Routes>
       </BrowserRouter>
     </>

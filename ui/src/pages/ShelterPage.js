@@ -30,14 +30,15 @@ function ShelterPage() {
                         <span class="button_content"><MdOutlineModeEdit />&nbsp;Edit Profile</span>
                     </button>
                 </Link>
-                    <button class="edit_button">
+                    {/* <button class="edit_button">
                         <span class="button_content"><IoSettingsOutline />&nbsp;Settings</span>
-                    </button>
+                    </button> */}
             </div>
             <div class="content_buttons">
                 <button class="page_button">Newsfeed</button>
-                <button class="page_button">Adoptable Animals</button>
-                <button class="page_button">Messages</button>
+                <Link to="/shelter/animals">
+                    <button class="page_button">Our Animals</button>
+                </Link>
             </div>
         </article>
 
