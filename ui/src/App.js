@@ -6,6 +6,7 @@ import SwipePets from "./pages/SwipePets";
 import LandingPage from "./pages/LandingPage";
 import ShelterPage from "./pages/ShelterPage";
 import AddNewAnimalPage from "./pages/AddNewAnimalPage";
+import EditShelterPage from "./pages/EditShelterPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/swipe" element={<SwipePets />}></Route>
             <Route path="/shelter" element={<ShelterPage />} />
             <Route path="/shelter/add-animal" element={<AddNewAnimalPage />} />
+            <Route path="shelter/edit-profile" element={<EditShelterPage />}/>
         </Routes>
       </BrowserRouter>
     </>
