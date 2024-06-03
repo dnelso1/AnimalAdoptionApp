@@ -24,7 +24,7 @@ function LandingPage() {
                     <div class="button-container">
                         {/* Update this line */}
                         <a href="/shelter" class="shelter-profile-link">Shelter Profile</a>
-                        <a href="/home">Animal Profile Page</a>
+                        <a href="/browse">Browse Animals</a>
                     </div>
                 </div>
             </div>

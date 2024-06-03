@@ -7,13 +7,11 @@ export default function Home() {
     const [ pets, setPets ] = useState([]);
     // const [filteredData, setFilteredData] = useState(jsonData);
     const [ searchTerm, setSearchTerm ] = useState("");
-    const API_KEY = "";
     const petData = () => JSON.parse(JSON.stringify(jsonData));
 
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const res = await fetch(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
                 const data = petData();//await res.json();
                 //console.log(data);
                 setPets(data);
@@ -28,7 +26,7 @@ export default function Home() {
     const filterPets = (searchTerm) => {
         try {
             const filteredData = petData().filter((item) =>
-                Object.values(item).slice(1).some(val =>
+                Object.values(item).slice(2).some(val =>
                     String(val).toLowerCase().includes(searchTerm.toLowerCase()))
                 // item.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
@@ -91,7 +89,7 @@ export default function Home() {
                                         name="search"
                                         id="search"
                                         placeholder="Search for a pet..."
-                                        className="py-2 px-4 rounded shadow w-full"
+                                        className="py-2 px-1 rounded shadow w-full"
                                         value={searchTerm}
                                         onChange={handleInputChange}
                                     />
@@ -100,7 +98,7 @@ export default function Home() {
                                 <a>
                                     <Link to={`/swipe`} className="inline-block bg-slate-300 py-2 px-6 rounded hover:bg-slate-400
                                                 transition-all duration-200">
-                                        Swipe
+                                        Swipe Available Pets
                                     </Link>
                                 </a>
                             </div>
@@ -108,8 +106,8 @@ export default function Home() {
                             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 my-6 lg:my-10">
                                 {pets.map((pet) => (
                                     <Link
-                                        to={`${pet.id}/${pet.name}`}
-                                        key={pet.id}
+                                        to={`${pet.animal_id}/${pet.name}`}
+                                        key={pet.animal_id}
                                         className="bg-slate-200 p-4 rounded hover:bg-slate-100 transition-all duration-200"
                                     >
                                         <PetCard pet={pet}/>

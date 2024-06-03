@@ -5,16 +5,15 @@ import jsonData from '../db.json';
 export default function PetDetail() {
     const [ pet, setPet ] = useState([]);
     const { id, name } = useParams();
-    const API_KEY = "live_Uhu45k5OeEV0MN82685p9RMm803ZWvqtHoOVkXPCLKUvtQMNszT6a4lmD2IK3ifD";
     const petData = () => JSON.parse(JSON.stringify(jsonData));
 
     useEffect(() => {
         const fetchPetData = async () => {
             try {
-                const res = await fetch(`https://api.thedogapi.com/v1/breeds/search?q=${name}`);
-                const data = petData();//await res.json();
-                const selectedItem = data.find(item => item.id == id);
-                //console.log(selectedItem);
+                const data = petData();
+                console.log(data);
+                const selectedItem = data.find(item => item.animal_id == id);
+                console.log(selectedItem);
                 setPet(selectedItem);
             } catch (e) {
                 console.error(e);
@@ -27,10 +26,10 @@ export default function PetDetail() {
     return (
         <div className="profile_pages">
             <section className="max-w-5xl mx-auto flex items-center justify-center h-screen">
-                <div key={pet.id} className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center">
+                <div key={pet.animal_id} className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center">
                     <article>
                         <img
-                            src={`../../images/${pet.image}`}
+                            src={`../../images/${pet.animal_id}-${pet.name}.jpg`}
                             alt={pet.name}
                             className="rounded md:h-255 w-full object-cover"
                         />
@@ -41,7 +40,7 @@ export default function PetDetail() {
                         <ul className="text-sm text-slate-600 leading-loose lg:text-base lg:leading-relaxed">
                             <li>
                                 <span className="font-bold text-slate-700">Species: </span>
-                                {pet.animalType}
+                                {pet.type}
                             </li>
                             <li>
                                 <span className="font-bold text-slate-700">Breed: </span>
@@ -49,21 +48,29 @@ export default function PetDetail() {
                             </li>
                             <li>
                                 <span className="font-bold text-slate-700">Gender: </span>
-                                {pet.isBoy ? "Male" : "Female"}
+                                {pet.gender}
                             </li>
                             <li>
                                 <span className="font-bold text-slate-700">Age: </span>
                                 {pet.age}
                             </li>
                             <li>
+                                <span className="font-bold text-slate-700">Disposition: </span>
+                                {pet.disposition}
+                            </li>
+                            <li>
                                 <span className="font-bold text-slate-700">Status: </span>
-                                {pet.isAdopted ? "Adopted" : "Available"}
+                                {pet.availability}
+                            </li>
+                            <li>
+                                <span className="font-bold text-slate-700">News item(s): </span>
+                                {pet.news_item}
                             </li>
                         </ul>
 
                         <Link to={`/`} className="inline-block bg-slate-300 py-2 px-6 rounded mt-8 hover:bg-slate-400
                                             transition-all duration-200">
-                            &larr; Back
+                        &larr; Back
                         </Link>
                     </article>
                 </div>

@@ -14,8 +14,8 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<LandingPage />}></Route>
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/home/:id/:name" element={<PetDetail />}></Route>
+            <Route path="/browse" element={<Home />}></Route>
+            <Route path="/browse/:id/:name" element={<PetDetail />}></Route>
             <Route path="/swipe" element={<SwipePets />}></Route>
             <Route path="/shelter" element={<ShelterPage />} />
             <Route path="/shelter/add-animal" element={<AddNewAnimalPage />} />

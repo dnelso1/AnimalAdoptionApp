@@ -7,9 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import ReplayIcon from "@mui/icons-material/Replay";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import {Link} from "react-router-dom";
 
 export default function SwipePets() {
-    const petData = () => JSON.parse(JSON.stringify(jsonData));
+    const petData = () => JSON.parse(JSON.stringify(jsonData)).filter((item) =>
+        item.availability.toLowerCase() === "available"
+    );
     const [pets, setPets] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(petData().length - 1);
     const [lastDirection, setLastDirection] = useState();
@@ -90,18 +93,27 @@ export default function SwipePets() {
 
     return (
         <div className="profile_pages">
+            <div className="flex flex-col text-center">
+                <a>
+                    <Link to={`/browse`} className="inline-block bg-slate-300 py-2 px-6 rounded hover:bg-slate-400
+                                                transition-all duration-200">
+                        Back to Browse
+                    </Link>
+                </a>
+            </div>
             <div className="swipeCards">
                 <div className="swipeCards__container">
                     {pets.map((pet, index) => (
                         <TinderCard
                             ref={childRefs[index]}
                             className="swipe"
-                            key={pet.id}
+                            key={pet.animal_id}
                             preventSwipe={['up', 'down']}
-                            onSwipe={(dir) => swiped(dir, pet.id, index)}
+                            onSwipe={(dir) => swiped(dir, pet.animal_id, index)}
                             onCardsLeftScreen={() => outOfFrame(pet, index)}
                         >
-                            <div className="card" style={{backgroundImage: `url(images/${pet.image}`}}>
+                            <div className="card"
+                                 style={{backgroundImage: `url(images/${pet.animal_id}-${pet.name}.jpg)`}}>
                                 {/*<h2 className="text-3xl">{pet.name}</h2>*/}
                             </div>
                             <div className="swipeButtons">
@@ -125,12 +137,14 @@ export default function SwipePets() {
                     ))}
                 </div>
             </div>
-            <div className="description">
+            <div className="name">
                 <h2 className="text-3xl">{currentPet.name} ({currentPet.age} y.o.)</h2>
+            </div>
+            <div className="description">
                 <ul style={{listStyleType: "disc"}}>
-                    <li>{currentPet.breed}</li>
-                    <li>{currentPet.isBoy ? "Male" : "Female"}</li>
-                    <li>{currentPet.description}</li>
+                    <li>Breed: {(currentPet.breed) ? currentPet.breed : currentPet.type}</li>
+                    <li>Gender: {currentPet.gender}</li>
+                    <li>Description: {currentPet.description}</li>
                 </ul>
             </div>
         </div>
