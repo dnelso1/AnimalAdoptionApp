@@ -62,8 +62,8 @@ def add_animal_profile():
 
         print(content)
         stmt = sqlalchemy.text(
-            'INSERT INTO animal_profiles(shelter_id, name, type, breed, disposition, availability, news_item, description) '
-            'VALUES (:shelter_id, :name, :type, :breed, :disposition, :availability, :news_item, :description)'
+            'INSERT INTO animal_profiles(shelter_id, name, type, breed, disposition, availability, news_item, description, gender, age) '
+            'VALUES (:shelter_id, :name, :type, :breed, :disposition, :availability, :news_item, :description, :gender, :age)'
         )
         conn.execute(stmt, parameters={'shelter_id': 1,
                                        'name': content['name'],
@@ -72,7 +72,9 @@ def add_animal_profile():
                                        'disposition': content['disposition'],
                                        'availability': content['availability'],
                                        'news_item': content['news_blurb'],
-                                       'description': content['description']})
+                                       'description': content['description'],
+                                       'gender': content['gender'],
+                                       'age': content['age']})
         stmt2 = sqlalchemy.text('SELECT last_insert_id()')
         id = conn.execute(stmt2).scalar()
 

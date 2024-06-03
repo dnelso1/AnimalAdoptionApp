@@ -20,6 +20,8 @@ function AddNewAnimalPage() {
     const [images, setImages] = useState(['', '', '', '', '']);
     const [otherType, setOtherType] = useState('');
     const [availability, setAvailability] = useState('Available');
+    const [gender, setGender] = useState('Male');
+    const [age, setAge] = useState(0);
 
     const handleImageChange = (position, e) => {
         const updatedImageState = images.map((item, index) =>
@@ -37,6 +39,14 @@ function AddNewAnimalPage() {
 
     const handleNameChange = (e) => {
         setName(e.target.value);
+    }
+
+    const handleGenderChange = (gender) => {
+        setGender(gender);
+    }
+
+    const handleAgeChange = (e) => {
+        setAge(e.target.value);
     }
 
     const handleDescriptionChange = (e) => {
@@ -96,7 +106,9 @@ function AddNewAnimalPage() {
             "availability": availability,
             "description": description,
             "news_blurb": newsBlurb,
-            "images": images
+            "images": images,
+            "gender": gender,
+            "age": age
         }
         const response = await axios.post('http://127.0.0.1:8010/add-animal-profile', newAnimal);
         console.log(response)
@@ -110,6 +122,8 @@ function AddNewAnimalPage() {
             setImages(['', '', '', '', '']);
             setOtherType('');
             setAvailability('Available');
+            setGender('Male');
+            setAge(0);
 
             window.alert("Your new animal profile was successfully added!");
         }
@@ -292,6 +306,45 @@ function AddNewAnimalPage() {
                             </li>
                         </ul>
                         <ul class="col">
+                            <li>
+                                <fieldset>
+                                    <legend>Gender:</legend>
+                                    <ul>
+                                        <li class="types">
+                                            <input
+                                                type="radio"
+                                                id="male"
+                                                name="gender"
+                                                value="Male"
+                                                checked={gender === "Male"}
+                                                onChange={() => handleGenderChange("Male")}
+                                            />
+                                            <label for="male">Male</label>
+                                        </li>
+                                        <li class="types">
+                                            <input
+                                                type="radio"
+                                                id="female"
+                                                name="gender"
+                                                value="Female"
+                                                checked={gender === "Female"}
+                                                onChange={() => handleGenderChange("Female")}
+                                            />
+                                            <label for="female">Female</label>
+                                        </li>
+                                    </ul>
+                                </fieldset>                                
+                            </li>
+                            <li>
+                                <label for="age">Age:</label>
+                                <input
+                                    type="number"
+                                    id="age"
+                                    name="age"
+                                    value={age}
+                                    onChange={handleAgeChange}
+                                />
+                            </li>
                             <li>
                                 <legend for="description">Description:</legend>
                                 <textarea
