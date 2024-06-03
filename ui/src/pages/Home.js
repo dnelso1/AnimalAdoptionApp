@@ -64,7 +64,7 @@ export default function Home() {
     // }
 
     return (
-        <>
+        <div className="profile_pages">
             {!pets ? (
                 <h1 className="flex items-center justify-center text-slate-800 text-center px-5
                                 text-3xl h-screen font-bold">
@@ -120,6 +120,6 @@ export default function Home() {
                     </div>
                 </>
             )}
-        </>
+        </div>
     );
 }

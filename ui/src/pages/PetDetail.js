@@ -25,7 +25,7 @@ export default function PetDetail() {
     }, [name])
 
     return (
-        <>
+        <div className="profile_pages">
             <section className="max-w-5xl mx-auto flex items-center justify-center h-screen">
                 <div key={pet.id} className="grid grid-cols-1 gap-8 p-8 md:grid-cols-2 md:place-items-center">
                     <article>
@@ -68,6 +68,6 @@ export default function PetDetail() {
                     </article>
                 </div>
             </section>
-        </>
+        </div>
     )
 }

@@ -89,7 +89,7 @@ export default function SwipePets() {
     }
 
     return (
-        <>
+        <div className="profile_pages">
             <div className="swipeCards">
                 <div className="swipeCards__container">
                     {pets.map((pet, index) => (
@@ -133,6 +133,6 @@ export default function SwipePets() {
                     <li>{currentPet.description}</li>
                 </ul>
             </div>
-        </>
+        </div>
     )
 }
