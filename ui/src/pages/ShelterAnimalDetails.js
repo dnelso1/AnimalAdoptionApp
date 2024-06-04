@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
+import { FaTrashAlt } from "react-icons/fa";
 
 function ShelterAnimalDetails() {
     const location = useLocation();
     const data = location.state?.data;
-    let counter = 0;
+
+    const handleDelete = async () => {
+        if (window.confirm("Your review will be permanently deleted. Press 'OK' to proceed.") === true) {
+            const response = await axios.delete(`http://127.0.0.1:8010/delete-pet-profile/${data.animal_id}`)
+            if (response.status === 204) {
+                window.alert("The profile was successfully deleted.")
+            }
+        }
+    }
 
     return(
         <>
@@ -28,6 +37,9 @@ function ShelterAnimalDetails() {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="pet-details-row">
+                    <button onClick={handleDelete}><FaTrashAlt /> Delete Pet Profile </button>
                 </div>
             </div>
         </>

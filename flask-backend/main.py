@@ -159,6 +159,19 @@ def get_shelter_animals(id):
 
         return animals;  
 
+# Delete animal profile
+@app.route('/delete-pet-profile/<int:id>', methods=['DELETE'])
+def delete_animal_profile(id):
+    with db.connect() as conn:
+        stmt = sqlalchemy.text(
+            'DELETE FROM animal_profiles WHERE animal_id = :animal_id'
+        )
+        result = conn.execute(stmt, parameters={'animal_id': id})
+        conn.commit()
+
+        if result.rowcount == 1:
+            return ('', 204)
+
 
 if __name__ == '__main__':
     init_db()

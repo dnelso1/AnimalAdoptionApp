@@ -4,6 +4,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { IoMdAddCircle } from "react-icons/io";
+import { LuDog } from "react-icons/lu";
 
 // Shelter id will be passed from login or register page, hardcoded for testing
 const id = 1;
@@ -20,6 +21,11 @@ function ShelterPage() {
                 </div>
             </div>
             <div class="edit_buttons">
+                <Link to="/shelter/animals" state={{id: id}}>
+                    <button class="edit_button">
+                        <span class="button_content"><LuDog />&nbsp; View our pets</span>
+                    </button>
+                </Link>
                 <Link to="/shelter/add-animal" state={{id: id}}>
                     <button class="edit_button">
                         <span class="button_content"><IoMdAddCircle/>&nbsp;Add new animal</span>
@@ -29,15 +35,6 @@ function ShelterPage() {
                     <button class="edit_button">
                         <span class="button_content"><MdOutlineModeEdit />&nbsp;Edit Profile</span>
                     </button>
-                </Link>
-                    {/* <button class="edit_button">
-                        <span class="button_content"><IoSettingsOutline />&nbsp;Settings</span>
-                    </button> */}
-            </div>
-            <div class="content_buttons">
-                <button class="page_button">Newsfeed</button>
-                <Link to="/shelter/animals" state={{id: id}}>
-                    <button class="page_button">Our Animals</button>
                 </Link>
             </div>
         </article>
