@@ -114,7 +114,7 @@ button {
 form {
   display: inline-block;
   /* padding: 1em; */
-  border: 1px solid #ccc;
+  border: 1px solid #ccc !important;
   padding: 1.5em;
 }
 
@@ -132,6 +132,10 @@ form li + li {
 
 .dispositions, .availabilities, .types{
   margin-top:0.5em;
+}
+
+.image-section {
+  padding-right:50px;
 }
 
 label {
@@ -226,6 +230,12 @@ label {
   font-size: 50px;
   margin:0%;
   padding:15px;
+}
+
+.edit-profile-form {
+  background-color: white;
+  margin-left:40%;
+  padding-right:50px;
 }
 
 .pet-details-row {

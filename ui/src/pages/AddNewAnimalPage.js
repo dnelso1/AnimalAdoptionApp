@@ -368,9 +368,9 @@ function AddNewAnimalPage() {
                                 </textarea>
                             </li>
                         </ul>
-                        <ul class="col">
+                        <ul>
                             <legend>Please provide at least one image:</legend>
-                            <fieldset>
+                            <fieldset class="col image-section">
                                 {image_labels.map(
                                     (image, index) => {
                                         return (

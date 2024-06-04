@@ -68,8 +68,8 @@ function EditShelterPage() {
     }
 
     return(
-        <>
-        <form onSubmit={(e) => {e.preventDefault();}}>
+        <div class="pets-background">
+        <form class="edit-profile-form" onSubmit={(e) => {e.preventDefault();}}>
             <h2>Update your profile information:</h2>
             <ul class="column">
                 <li>
@@ -130,7 +130,7 @@ function EditShelterPage() {
             </ul>
             <button type="submit" class="submit_button" onClick={handleSubmit}>Submit</button>
         </form>
-        </>
+        </div>
     )
 }
 
