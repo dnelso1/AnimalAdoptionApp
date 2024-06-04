@@ -1,23 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineModeEdit } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoMdAdd } from "react-icons/io";
 import { IoMdAddCircle } from "react-icons/io";
 import { LuDog } from "react-icons/lu";
+import axios from 'axios';
+
+
 
 // Shelter id will be passed from login or register page, hardcoded for testing
 const id = 1;
 
 function ShelterPage() {
+
+    // Shelter info
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [website, setWebsite] = useState("");
+
+    // Get shelter info
+    const getShelterInfo= async() => {
+        const response = await axios.get(`http://127.0.0.1:8010/get-shelter/${id}`);
+        const data = response.data;
+        console.log(data);
+        setName(data.shelter_name);
+        setAddress(data.address);
+        setEmail(data.email);
+        setPhoneNumber(data.phone_number);
+        setWebsite(data.website_link);
+
+        return data;
+    }
+
+    useEffect(() => {
+        getShelterInfo();
+    }, [])
+
     return (
         <>
         <article class="pets-background">
             <div class="rescue_info">
-                <h2 class="rescue_name">Pet Rescue of Boston</h2>
+                <h2 class="rescue_name">{name}</h2>
                 <div class="rescue_details">
-                    <h3>123 Main St, Boston MA &emsp; &ensp;  bostonrescue@gmail.com &emsp; &ensp; (999)-999-9999</h3>
-                    <h3>petrescueboston@gmail.com</h3>
+                    <h3>{address} &emsp; &ensp; {email} &emsp; &ensp; {phoneNumber}</h3>
+                    <h3>{website}</h3>
                 </div>
             </div>
             <div class="edit_buttons">
