@@ -11,7 +11,7 @@ const id = 1;
 function ShelterPage() {
     return (
         <>
-        <article>
+        <article class="pets-background">
             <div class="rescue_info">
                 <h2 class="rescue_name">Pet Rescue of Boston</h2>
                 <div class="rescue_details">
@@ -36,7 +36,7 @@ function ShelterPage() {
             </div>
             <div class="content_buttons">
                 <button class="page_button">Newsfeed</button>
-                <Link to="/shelter/animals">
+                <Link to="/shelter/animals" state={{id: id}}>
                     <button class="page_button">Our Animals</button>
                 </Link>
             </div>

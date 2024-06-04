@@ -6,13 +6,12 @@ import { useLocation, Link } from "react-router-dom";
 
 function ShelterAnimals() {
     const location = useLocation();
-    // const id = location.state?.id;
-    const id = 1;
+    const id = location.state?.id;
 
     const [shelterAnimals, setShelterAnimals] = useState([null, null, null, null])
 
     // Get all shelter animals
-    const getShelterAnimals = async() => {
+    const getShelterAnimals = async(id) => {
         const response = await axios.get(`http://127.0.0.1:8010/get-shelter-animals/${id}`);
         const data = response.data;
         console.log(data)
@@ -41,7 +40,7 @@ function ShelterAnimals() {
     }
 
     useEffect(() => {
-        getShelterAnimals().then((data) => createDisplayColumns(data))
+        getShelterAnimals(id).then((data) => createDisplayColumns(data))
     }, [])
 
     return(
@@ -53,11 +52,11 @@ function ShelterAnimals() {
                         shelterAnimals[0]?.map((animalProfile) => {
                             return (
                                 <figure class="pet-figure">
-                                    <Link to="/shelter/animal-details">
+                                    <Link to="/shelter/animal-details" state={{data: animalProfile}}>
                                         <img src={animalProfile.pictures[0]} class="pet-image"/>
                                     </Link>
                                     <figcaption class="pet-figure-name">{animalProfile.name}</figcaption>
-                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed}</figcaption>
+                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed !== "" ? animalProfile.breed : animalProfile.type}</figcaption>
                                 </figure>
                             )
                         })
@@ -68,11 +67,11 @@ function ShelterAnimals() {
                         shelterAnimals[1]?.map((animalProfile) => {
                             return (
                                 <figure class="pet-figure">
-                                    <Link to="/shelter/animal-details">
+                                    <Link to="/shelter/animal-details" state={{data: animalProfile}}>
                                         <img src={animalProfile.pictures[0]} class="pet-image"/>
                                     </Link>
                                     <figcaption class="pet-figure-name">{animalProfile.name}</figcaption>
-                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed}</figcaption>
+                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed !== "" ? animalProfile.breed : animalProfile.type}</figcaption>
                                 </figure>
                             )
                         })
@@ -83,11 +82,11 @@ function ShelterAnimals() {
                         shelterAnimals[2]?.map((animalProfile) => {
                             return (
                                 <figure class="pet-figure">
-                                    <Link to="/shelter/animal-details">
+                                    <Link to="/shelter/animal-details" state={{data: animalProfile}}>
                                         <img src={animalProfile.pictures[0]} class="pet-image"/>
                                     </Link>
                                     <figcaption class="pet-figure-name">{animalProfile.name}</figcaption>
-                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed}</figcaption>
+                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed !== "" ? animalProfile.breed : animalProfile.type}</figcaption>
                                 </figure>
                             )
                         })
@@ -98,11 +97,11 @@ function ShelterAnimals() {
                         shelterAnimals[3]?.map((animalProfile) => {
                             return (
                                 <figure class="pet-figure">
-                                    <Link to="/shelter/animal-details">
+                                    <Link to="/shelter/animal-details" state={{data: animalProfile}}>
                                         <img src={animalProfile.pictures[0]} class="pet-image"/>
                                     </Link>
                                     <figcaption class="pet-figure-name">{animalProfile.name}</figcaption>
-                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed}</figcaption>
+                                    <figcaption class="pet-figure-details">{animalProfile.age} years old &emsp; • &emsp; {animalProfile.breed !== "" ? animalProfile.breed : animalProfile.type}</figcaption>
                                 </figure>
                             )
                         })

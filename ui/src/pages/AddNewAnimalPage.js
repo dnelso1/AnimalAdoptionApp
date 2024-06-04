@@ -91,7 +91,7 @@ function AddNewAnimalPage() {
         let i = 0;
         while (i < dispositions.length) {
             if (checkedState[i] === true) {
-                sentDisposition += dispositions[i] + ',';
+                sentDisposition += dispositions[i] + ', ';
             }
             i++;
         }
