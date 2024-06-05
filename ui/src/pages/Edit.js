@@ -67,7 +67,7 @@ function Edit() {
             if (response.data.message === 'Your profile was deleted!') {
                 sessionStorage.clear();
                 alert(response.data.message);
-                window.location.href = "/login";
+                window.location.href = "/";
             }           
         })
     };
