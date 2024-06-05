@@ -16,16 +16,16 @@ function Index() {
             <h1 id="create-header"> Welcome {nameData}</h1>
                 <div class="container">
                     <div>
-                        <a href="http://localhost:3000/" class="homebutton">Landing Page</a>
+                        <a href="/" class="homebutton">Landing Page</a>
                     </div>
                     <div>
-                        <a href="http://localhost:3000/browse" class="browsebutton">Browse Animals</a>
+                        <a href="/browse" class="browsebutton">Browse Animals</a>
                     </div>
                     <div>
-                        <a href="http://localhost:3000/edit" class="editbutton" id="editbutton">Edit Profile</a>
+                        <a href="/edit" class="editbutton" id="editbutton">Edit Profile</a>
                     </div>
                     <div>
-                        <a href="http://localhost:3000/logout" class="logoutbutton">Logout</a>
+                        <a href="/logout" class="logoutbutton">Logout</a>
                     </div>
                 
                 </div>
