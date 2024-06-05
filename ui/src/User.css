@@ -9,7 +9,7 @@
 .background{
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(45deg, rgba(243, 183, 218, 0.8), rgba(243, 183, 218, 0.8)) ,url('pets.jpg');
+  background-image: url('pets.jpg');
   background-position: center;
   background-size: cover;
   position: relative; 
@@ -102,7 +102,7 @@ input{
   color: rgba(243, 183, 218);
 }
 
-.editbutton, .logoutbutton {
+.editbutton, .logoutbutton, .homebutton, .browsebutton {
   width: 87%;
   border-radius: 5px;
   padding:10px 30px;
@@ -139,6 +139,15 @@ input{
 
 }
 .homebutton:hover{
+  color: white;
+}
+
+.browsebutton {
+  background-color: rgb(202, 202, 202);
+  color:  rgb(65, 62, 63);
+
+}
+.browsebutton:hover{
   color: white;
 }
 
