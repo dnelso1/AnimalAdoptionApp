@@ -11,7 +11,7 @@ function LandingPage() {
                 <div class="landing-content">
                     <h1>Welcome to PetMatch</h1>
                     <div class="button-container">
-                        <a href="/index" class="home-button">User Login</a>
+                        <a href="/login" class="home-button">User Login</a>
                         <a href="/register" class="home-button">User Registration</a>
                         <a href="#" class="shelter-button">Shelter Login</a>
                         <a href="#" class="shelter-button">Shelter Registration</a>

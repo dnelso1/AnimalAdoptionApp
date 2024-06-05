@@ -87,6 +87,9 @@ function Register() {
                 <div>
                     <a href="http://localhost:3000/login" className="redirect">Already have an account? Login here</a>
                 </div>
+                <div>
+                    <a href="http://localhost:3000/" className="redirect">Go Back</a>
+                </div>
             </form>
 
         </div>

@@ -19,6 +19,9 @@ function Index() {
                         <a href="http://localhost:3000/" class="homebutton">Landing Page</a>
                     </div>
                     <div>
+                        <a href="http://localhost:3000/browse" class="browsebutton">Browse Animals</a>
+                    </div>
+                    <div>
                         <a href="http://localhost:3000/edit" class="editbutton" id="editbutton">Edit Profile</a>
                     </div>
                     <div>
