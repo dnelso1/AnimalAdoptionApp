@@ -82,10 +82,10 @@ function Register() {
                     <button type="submit" id="createaccount" className="createbutton"> Register </button>
                 </div>
                 <div>
-                    <a href="http://localhost:3000/login" className="redirect">Already have an account? Login here</a>
+                    <a href="/login" className="redirect">Already have an account? Login here</a>
                 </div>
                 <div>
-                    <a href="http://localhost:3000/" className="redirect">Go Back</a>
+                    <a href="/" className="redirect">Go Back</a>
                 </div>
             </form>
 
