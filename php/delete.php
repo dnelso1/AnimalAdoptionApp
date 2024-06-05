@@ -14,6 +14,7 @@ header("Content-Type: application/json; charset=UTF-8");
     # delete user with the associated email from the database
     $query = "DELETE FROM user_information WHERE email = '$email'";
     $result = mysqli_query($con, $query);
+    # Remove all session variables and destroy session
     session_unset();
     session_destroy();
     $message = "Your profile was deleted!";

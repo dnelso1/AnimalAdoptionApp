@@ -50,11 +50,10 @@ header("Content-Type: application/json; charset=UTF-8");
                 $query = "UPDATE user_information SET full_name = '$new_name', email = '$new_email', password = '$new_password' WHERE email = '$old_email'";
                 mysqli_query($con, $query);
                 $message = 'Your profile was updated!';
+                # Update session storage with new user information
                 $_SESSION['name'] = $new_name;
                 $_SESSION['email'] = $new_email;
-                $info = $_SESSION['name'];
-                $detail = $_SESSION['email'];
-                $response = array('message' => $message, 'info' => $info, 'detail' => $detail);
+                $response = array('message' => $message, 'info' => $new_name, 'detail' => $new_email);
                 echo json_encode($response);
             };
         # edit user information if password was not changed     
@@ -63,11 +62,10 @@ header("Content-Type: application/json; charset=UTF-8");
             $query = "UPDATE user_information SET full_name = '$new_name', email = '$new_email' WHERE email = '$old_email'";
             mysqli_query($con, $query);
             $message = 'Your profile was updated!';
+            # Update session storage with new user information
             $_SESSION['name'] = $new_name;
             $_SESSION['email'] = $new_email;
-            $info = $_SESSION['name'];
-            $detail = $_SESSION['email'];
-            $response = array('message' => $message, 'info' => $info, 'detail' => $detail);
+            $response = array('message' => $message, 'info' => $new_name, 'detail' => $new_email);
             echo json_encode($response);
         }
     };

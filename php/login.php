@@ -29,14 +29,12 @@ header("Content-Type: application/json; charset=UTF-8");
             if(mysqli_num_rows($result) == 1) {
                 $user_info = mysqli_fetch_assoc($result);
                 if($password == $user_info['password']) {
-                    # store user information into session storage
+                    # store user information from db query into session storage
                     $_SESSION['id'] = $user_info['id'];
                     $_SESSION['name'] = $user_info['full_name'];
                     $_SESSION['email'] = $user_info['email'];
-                    $info = $_SESSION['name'];
-                    $detail = $_SESSION['email'];
                     $message = 'You are logged in';
-                    $response = array('message' => $message, 'info' => $info, 'detail' => $detail);
+                    $response = array('message' => $message, 'info' => $user_info['full_name'], 'detail' => $user_info['email']);
                     echo json_encode($response);
                 }
                 else { 
