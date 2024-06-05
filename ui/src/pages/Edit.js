@@ -110,7 +110,7 @@ function Edit() {
                     onClick={deleteUser}>Delete Profile</button>
                 </div>
                 <div>
-                    <a href="http://localhost:3000/index" class="redirect">Cancel</a>
+                    <a href="/index" class="redirect">Cancel</a>
                 </div>
             </form>
         </div>     
