@@ -70,7 +70,6 @@ input{
   border: 0;
 }
 
-
 .button-container{
   width: 100%;
   display: flex;
@@ -132,6 +131,15 @@ input{
 
 .logoutbutton:hover{
   color: rgba(243, 183, 218);
+}
+
+.homebutton {
+  background-color: rgb(202, 202, 202);
+  color:  rgb(65, 62, 63);
+
+}
+.homebutton:hover{
+  color: white;
 }
 
 .App-link {
