@@ -46,7 +46,7 @@ function Edit() {
                 password: new_password
             }).then((response) => {
                 if (response.data.message === 'Your profile was updated!') {
-                    sessionStorage.setItem("nameData", JSON.stringify(response.data.info));
+                    sessionStorage.setItem("nameData", response.data.info);
                     sessionStorage.setItem("emailObj", response.data.detail);
                     alert(response.data.message);
                     window.location.href = "/index";    
