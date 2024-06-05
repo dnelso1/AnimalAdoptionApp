@@ -55,9 +55,6 @@ function Edit() {
                     window.location.href = "/edit";
                 }
             })
-            .catch((err) => {
-                alert(err.message); 
-            });
         };
     };
 
@@ -72,9 +69,6 @@ function Edit() {
                 alert(response.data.message);
                 window.location.href = "/login";
             }           
-        })
-        .catch((err) => {
-            alert(err.message); 
         })
     };
 

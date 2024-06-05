@@ -45,9 +45,6 @@ function Register() {
                     alert(response.data.errorMessage);
                     window.location.href = "/register";
                 }
-            })
-            .catch((err) => {
-                alert(err.message); 
             });
         } else {
             alert("Please fill out all required fields");

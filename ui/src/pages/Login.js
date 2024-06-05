@@ -44,9 +44,6 @@ function Login() {
                     window.location.href = "/login";
                 }
             })
-            .catch((err) => {
-                console.log(err); 
-            });
         } else {
             alert("Both email and password is required");
         };
