@@ -1,0 +1,12 @@
+runtime: php
+env: flex
+
+runtime_config:
+  operating_system: "ubuntu22"
+  document_root: .
+
+handlers:
+
+- url: .*
+  script: auto
+
