@@ -73,10 +73,10 @@ function Login() {
                     <button type="submit" id="createaccount" className="createbutton"> Login </button>
                 </div>
                 <div>
-                    <a href="http://localhost:3000/register" className="redirect">Don't have an account? Register here</a>
+                    <a href="/register" className="redirect">Don't have an account? Register here</a>
                 </div>
                 <div>
-                    <a href="http://localhost:3000/" className="redirect">Go Back</a>
+                    <a href="/" className="redirect">Go Back</a>
                 </div>
             </form>
 
