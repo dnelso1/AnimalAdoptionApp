@@ -29,15 +29,13 @@ function Register() {
     function submitChange(event) {
         event.preventDefault();
         if (name !== "" && email!== "" && password !== "") {
+            //axios.post("https://php-api-425323.wl.r.appspot.com/register.php", {
             axios.post("http://localhost:80/php/register.php", {
                 name: name,
                 email: email,
                 password: password
             }).then((response) => {
-                //console.log(response);
                 if (response.data.message === 'You are now registered, please log in!') {
-                    //sessionStorage.setItem("loginStatus", true);
-                    //sessionStorage.setItem("userData", JSON.stringify(response.data.info));
                     alert(response.data.message);
                     window.location.href = "/login";    
                 } else if (response.data.message === "Failed to connect to database") {
@@ -49,7 +47,7 @@ function Register() {
                 }
             })
             .catch((err) => {
-                console.log(err); 
+                alert(err.message); 
             });
         } else {
             alert("Please fill out all required fields");
@@ -95,6 +93,5 @@ function Register() {
         
     </div>
     );
-}
-        
+}   
 export default Register;

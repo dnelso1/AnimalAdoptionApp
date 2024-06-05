@@ -9,8 +9,6 @@ import axios from "axios"
 function Edit() {
 
     const loginStatus = sessionStorage.getItem("loginStatus");
-    //const nameData = JSON.parse(sessionStorage.getItem("nameData"));
-    //const emailData = JSON.parse(sessionStorage.getItem("emailData"));
     const emailObj = sessionStorage.getItem("emailObj");
 
     if (!loginStatus) {
@@ -40,6 +38,7 @@ function Edit() {
     function submitChange(event) {
         event.preventDefault();
         if (new_name !== "" || new_email!== "" || new_password !== "") {
+            //axios.post("https://php-api-425323.wl.r.appspot.com/edit.php", {
             axios.post("http://localhost:80/php/edit.php", {
                 name: new_name,
                 email: new_email,
@@ -48,7 +47,6 @@ function Edit() {
             }).then((response) => {
                 if (response.data.message === 'Your profile was updated!') {
                     sessionStorage.setItem("nameData", JSON.stringify(response.data.info));
-                    sessionStorage.setItem("emailData", JSON.stringify(response.data.detail));
                     sessionStorage.setItem("emailObj", response.data.detail);
                     alert(response.data.message);
                     window.location.href = "/index";    
@@ -58,7 +56,7 @@ function Edit() {
                 }
             })
             .catch((err) => {
-                console.log(err); 
+                alert(err.message); 
             });
         };
     };
@@ -66,6 +64,7 @@ function Edit() {
     function deleteUser(event) {
         event.preventDefault();
         axios.post("http://localhost:80/php/delete.php", {
+        //axios.post("https://php-api-425323.wl.r.appspot.com/delete.php", {
             email: emailObj
         }).then((response) => {
             if (response.data.message === 'Your profile was deleted!') {
@@ -75,7 +74,7 @@ function Edit() {
             }           
         })
         .catch((err) => {
-            console.log(err); 
+            alert(err.message); 
         })
     };
 

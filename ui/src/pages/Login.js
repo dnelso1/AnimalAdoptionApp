@@ -9,7 +9,6 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
    
-
     const handleChange = (event, input) => {
         switch(input){
             case "email":
@@ -25,15 +24,14 @@ function Login() {
     function submitChange(event) {
         event.preventDefault()
         if (email!== "" && password !== "") {
+            //axios.post("https://php-api-425323.wl.r.appspot.com", {
             axios.post("http://localhost:80/php/login.php", {
                 email: email,
                 password: password
             }).then((response) => {
-                //console.log(response);
                 if (response.data.message === 'You are logged in') {
                     sessionStorage.setItem("loginStatus", true);
-                    sessionStorage.setItem("nameData", JSON.stringify(response.data.info));
-                    sessionStorage.setItem("emailData", JSON.stringify(response.data.detail));
+                    sessionStorage.setItem("nameData", response.data.info);
                     sessionStorage.setItem("emailObj", response.data.detail);
                     alert(response.data.message);
                     window.location.href = "/index";    
