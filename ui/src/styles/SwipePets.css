@@ -1,0 +1,59 @@
+/*.swipeCards {*/
+/*    background-image: url('../../public/images/pets.jpg');*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    opacity: 0.5*/
+/*}*/
+
+.swipeCards__container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+}
+
+.card {
+    position: relative;
+    background-color: white;
+    width: 600px;
+    padding: 20px;
+    max-width: 85vw;
+    height: 50vh;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.3);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.swipe {
+    position: absolute;
+}
+
+.card h2 {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    color: white;
+}
+
+.description {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 5vh;
+    max-width: 50ch;
+    /*margin-right: 30%;*/
+    margin-left: 20px;
+    word-wrap: break-word;
+}
+
+.name h2 {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 16vh;
+    margin-left: 20px;
+    /*width: 100%;*/
+    /*margin-right: 30%;*/
+}
+
