@@ -17,6 +17,7 @@ logger = logging.getLogger()
 
 # Error messages
 ERROR_SHELTER_NOT_FOUND = {"Error": "No shelter with this id exists"}
+ERROR_SHELTER_LOGIN_NOT_FOUND = {"Error": "No shelter with this username and password exists"}
 
 
 # Sets up connection pool for the app
@@ -27,13 +28,7 @@ def init_connection_pool() -> sqlalchemy.engine.base.Engine:
     #     'Missing database connection type. Please define INSTANCE_CONNECTION_NAME'
     # )
 
-# This global variable is declared with a value of `None`
-db = None
-
-# Initiates connection to database
-def init_db():
-    global db
-    db = init_connection_pool()
+db = init_connection_pool()
 
 @app.route('/')
 def index():
@@ -64,7 +59,7 @@ def add_animal_profile():
             'INSERT INTO animal_profiles(shelter_id, name, type, breed, disposition, availability, news_item, description, gender, age) '
             'VALUES (:shelter_id, :name, :type, :breed, :disposition, :availability, :news_item, :description, :gender, :age)'
         )
-        conn.execute(stmt, parameters={'shelter_id': 1,
+        conn.execute(stmt, parameters={'shelter_id': 4,
                                        'name': content['name'],
                                        'type': content['type'],
                                        'breed': content['breed'],
@@ -171,7 +166,18 @@ def delete_animal_profile(id):
         if result.rowcount == 1:
             return ('', 204)
 
+# Verify shelter login
+app.route('/shelter-login', methods=['GET'])
+def shelter_login():
+    with db.connect() as conn:
+        username = request.args.get('username')
+        password = request.args.get('password')
+        stmt = sqlalchemy.text(
+            'SELECT * FROM SHELTER WHERE username = :username AND password = :password'
+        )
+        row = conn.execute(stmt, parameters={'username': username, 'password': password}).one_or_none()
+        if row is None:
+            return ERROR_SHELTER_LOGIN_NOT_FOUND, 404
 
 if __name__ == '__main__':
-    init_db()
     app.run(host='0.0.0.0', port=8010, debug=True)

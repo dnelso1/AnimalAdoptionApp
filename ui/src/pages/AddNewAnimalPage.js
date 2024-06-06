@@ -110,7 +110,7 @@ function AddNewAnimalPage() {
             "gender": gender,
             "age": age
         }
-        const response = await axios.post('http://127.0.0.1:8010/add-animal-profile', newAnimal);
+        const response = await axios.post('https://server-animal-adoption-app.uc.r.appspot.com/add-animal-profile', newAnimal);
         console.log(response)
         if (response.status === 200) {
             setCheckedState([false, false, false]);

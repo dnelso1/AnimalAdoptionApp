@@ -12,7 +12,7 @@ function ShelterAnimals() {
 
     // Get all shelter animals
     const getShelterAnimals = async(id) => {
-        const response = await axios.get(`http://127.0.0.1:8010/get-shelter-animals/${id}`);
+        const response = await axios.get(`https://server-animal-adoption-app.uc.r.appspot.com/get-shelter-animals/${id}`);
         const data = response.data;
         console.log(data)
         return data;

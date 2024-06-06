@@ -1,5 +1,6 @@
 import React from 'react';
 import '../LandingPage.css';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     return (
@@ -9,12 +10,28 @@ function LandingPage() {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
             <div class="background">
                 <div class="landing-content">
-                    <h1>Welcome to PetMatch</h1>
+                    <h1 className='landing-title'>Welcome to PetMatch</h1>
                     <div class="button-container">
-                        <a href="/login" class="home-button">User Login</a>
-                        <a href="/register" class="home-button">User Registration</a>
-                        <a href="#" class="shelter-button">Shelter Login</a>
-                        <a href="#" class="shelter-button">Shelter Registration</a>
+                    <Link to="/login">
+                        <button class="home-button">
+                            User Login
+                        </button>
+                    </Link>
+                    <Link to="/register">
+                        <button class="home-button">
+                            User Registration
+                        </button>
+                    </Link>
+                    <Link to="/shelter-login">
+                        <button class="home-button">
+                            Shelter Login
+                        </button>
+                    </Link>
+                    <Link to="/shelter-registration">
+                        <button class="home-button">
+                            Shelter Registration
+                        </button>
+                    </Link>
                     </div>
                    
                 {/* Demo Buttons Section */}
@@ -23,8 +40,16 @@ function LandingPage() {
                 <div class="demo-buttons">
                     <div class="button-container">
                         {/* Update this line */}
-                        <a href="/shelter" class="shelter-profile-link">Shelter Home Page</a>
-                        <a href="/browse">Browse Animals</a>
+                        <Link to="/shelter">
+                            <button class="home-button">
+                                Shelter Home Page
+                            </button>
+                        </Link>
+                        <Link to="/browse">
+                            <button class="home-button">
+                                Browse Animals
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

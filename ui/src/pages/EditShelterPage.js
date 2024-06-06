@@ -15,7 +15,7 @@ function EditShelterPage() {
 
     // Get shelter info based on id
     const getShelterInfo = async (id) => {
-        const response = await axios.get(`http://127.0.0.1:8010/get-shelter/${id}`);
+        const response = await axios.get(`https://server-animal-adoption-app.uc.r.appspot.com/get-shelter/${id}`);
         const data = response.data;
         setName(data.shelter_name);
         setAddress(data.address);
@@ -58,7 +58,7 @@ function EditShelterPage() {
             "phone_number": phoneNumber,
             "website": website
         }
-        const response = await axios.put(`http://127.0.0.1:8010/update-shelter/${id}`, data)
+        const response = await axios.put(`https://server-animal-adoption-app.uc.r.appspot.com/update-shelter/${id}`, data)
         console.log(response)
         if (response.status === 200) {
             window.alert('Your profile was successfully updated!')

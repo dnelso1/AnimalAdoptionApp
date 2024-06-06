@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import Index from './pages/Index';
 import Logout from './pages/Logout';
 import Edit from './pages/Edit';
+import ShelterLogin from "./pages/ShelterLogin";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path= "/index" element={<Index />} />
             <Route path= "/logout" element={<Logout />} />
             <Route path= "/edit" element={<Edit />} />     
+            <Route path="/shelter-login" element={<ShelterLogin />} />
         </Routes>
       </BrowserRouter>
     </>

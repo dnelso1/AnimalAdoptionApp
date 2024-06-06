@@ -9,7 +9,7 @@ function ShelterAnimalDetails() {
 
     const handleDelete = async () => {
         if (window.confirm("Your review will be permanently deleted. Press 'OK' to proceed.") === true) {
-            const response = await axios.delete(`http://127.0.0.1:8010/delete-pet-profile/${data.animal_id}`)
+            const response = await axios.delete(`https://server-animal-adoption-app.uc.r.appspot.com/delete-pet-profile/${data.animal_id}`)
             if (response.status === 204) {
                 window.alert("The profile was successfully deleted.")
             }

@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 // Shelter id will be passed from login or register page, hardcoded for testing
-const id = 1;
+const id = 4;
 
 function ShelterPage() {
 
@@ -21,7 +21,8 @@ function ShelterPage() {
 
     // Get shelter info
     const getShelterInfo= async() => {
-        const response = await axios.get(`http://127.0.0.1:8010/get-shelter/${id}`);
+        // const response = await axios.get(`http://127.0.0.1:8010/get-shelter/${id}`);
+        const response = await axios.get(`https://server-animal-adoption-app.uc.r.appspot.com/get-shelter/${id}`);
         const data = response.data;
         console.log(data);
         setName(data.shelter_name);
