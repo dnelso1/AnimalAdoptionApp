@@ -45,7 +45,7 @@ function ShelterAnimals() {
 
     return(
         <div class="pets-background">
-            <h1 class="shelter-pets-title">Meet Our Animals!</h1>
+            <h1 class="shelter-pets-title">Meet Our Furry Friends!</h1>
             <div class="pet-row">
                 <div class="pet-column">
                     {

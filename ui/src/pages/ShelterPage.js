@@ -55,17 +55,17 @@ function ShelterPage() {
             <div class="edit_buttons">
                 <Link to="/shelter/animals" state={{id: id}}>
                     <button class="edit_button">
-                        <span class="button_content"><LuDog />&nbsp; View our pets</span>
+                        <span class="button_content"><LuDog />&nbsp; View pets</span>
                     </button>
                 </Link>
                 <Link to="/shelter/add-animal" state={{id: id}}>
                     <button class="edit_button">
-                        <span class="button_content"><IoMdAddCircle/>&nbsp;Add new animal</span>
+                        <span class="button_content"><IoMdAddCircle/>&nbsp;Add new pet</span>
                     </button>
                 </Link>
                 <Link to="/shelter/edit-profile" state={{id: id}}>
                     <button class="edit_button">
-                        <span class="button_content"><MdOutlineModeEdit />&nbsp;Edit Profile</span>
+                        <span class="button_content"><MdOutlineModeEdit />&nbsp;Edit profile</span>
                     </button>
                 </Link>
             </div>

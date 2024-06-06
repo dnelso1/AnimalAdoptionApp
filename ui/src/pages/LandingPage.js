@@ -1,6 +1,7 @@
 import React from 'react';
 import '../LandingPage.css';
 import { Link } from 'react-router-dom';
+import { FaPaw } from "react-icons/fa";
 
 function LandingPage() {
     return (
@@ -10,7 +11,10 @@ function LandingPage() {
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
             <div class="background">
                 <div class="landing-content">
-                    <h1 className='landing-title'>Welcome to PetMatch</h1>
+                    <div className='landing-header'>
+                        <h1 className='landing-title'>Welcome to PetMatch <FaPaw /></h1>
+                        <h2 className='landing-page-description'>Find your perfect companion on this dating-app style site! Swipe through tons of available pets from local shelters and like your favorites!</h2>
+                    </div>
                     <div class="button-container">
                     <Link to="/login">
                         <button class="home-button">
@@ -39,12 +43,6 @@ function LandingPage() {
                 </div>
                 <div class="demo-buttons">
                     <div class="button-container">
-                        {/* Update this line */}
-                        <Link to="/shelter">
-                            <button class="home-button">
-                                Shelter Home Page
-                            </button>
-                        </Link>
                         <Link to="/browse">
                             <button class="home-button">
                                 Browse Animals

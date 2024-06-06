@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Tooltip } from 'react-tooltip';
+import { FaRegLightbulb } from "react-icons/fa";
+
 
 function ShelterLogin() {
     const navigate = useNavigate();
@@ -30,6 +33,10 @@ function ShelterLogin() {
             })
     }
 
+    const handleSampleShelter = () => {
+        navigate('/shelter', {state: {shelter_id: 4}})
+    }
+
 
     return (
         <>
@@ -56,6 +63,8 @@ function ShelterLogin() {
                         onChange={handlePasswordChange}
                     />
                     <button class="shelter-login-button" type="submit" onClick={handleSubmit}>Submit</button>
+                    <p className='sample-shelter-text'>Not ready to create an account? Click below to see a sample shelter profile.</p>
+                    <button onClick={handleSampleShelter}>View sample</button>
                     
                 </form>
             </div>

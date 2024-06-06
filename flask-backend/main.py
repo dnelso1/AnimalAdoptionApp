@@ -18,6 +18,8 @@ logger = logging.getLogger()
 # Error messages
 ERROR_SHELTER_NOT_FOUND = {"Error": "No shelter with this id exists"}
 ERROR_SHELTER_LOGIN_NOT_FOUND = {"Error": "No shelter with this username and password exists"}
+ERROR_SHELTER_USER_ALREADY_EXISTS = {"Error": "Username is already taken."}
+ERROR_MISSING_SHELTER_ATTRIBUTES = {"Error": "One or more shelter attributes are missing."}
 
 
 # Sets up connection pool for the app
@@ -103,6 +105,40 @@ def get_shelter(id):
         print(shelter)
         return shelter
 
+# Add a new shelter
+@app.route('/add-shelter', methods=['POST'])
+def add_shelter():
+    with db.connect() as conn:
+        content = request.get_json()
+        print("content: ", flush=True)
+
+        stmt = sqlalchemy.text(
+            'SELECT * FROM shelters WHERE username = :username'
+        )
+        row = conn.execute(stmt, parameters={'username': content['username']}).one_or_none()
+        if row is not None:
+            return ERROR_SHELTER_USER_ALREADY_EXISTS, 403
+        for field in content:
+            if content[field] == '':
+                return ERROR_MISSING_SHELTER_ATTRIBUTES, 400
+        stmt = sqlalchemy.text(
+            'INSERT INTO shelters(username, password, shelter_name, address, email, phone_number, website_link) '
+            'VALUES (:username, :password, :shelter_name, :address, :email, :phone_number, :website_link)'
+        )
+        conn.execute(stmt, parameters={'username': content['username'],
+                                       'password': content['password'],
+                                       'shelter_name': content['shelter_name'],
+                                       'address': content['address'],
+                                       'email': content['email'],
+                                       'phone_number': content['phone_number'],
+                                       'website_link': content['website_link']
+
+        })
+        stmt = sqlalchemy.text('SELECT last_insert_id()')
+        id = conn.execute(stmt).scalar()
+        conn.commit()
+        return {'shelter_id': id}, 200
+
 # Update a shelter
 @app.route('/update-shelter/<int:id>', methods=['PUT'])
 def update_shelter(id):
@@ -170,7 +206,6 @@ def delete_animal_profile(id):
 # Verify shelter login
 @app.route('/shelter-login', methods=['GET'])
 def shelter_login():
-    print("hi", flush=True)
     with db.connect() as conn:
         username = request.args.get('username')
         password = request.args.get('password')
@@ -178,12 +213,10 @@ def shelter_login():
             'SELECT * FROM shelters WHERE username = :username AND password = :password'
         )
         row = conn.execute(stmt, parameters={'username': username, 'password': password}).one_or_none()
-        print("row: ", row, flush=True)
         if row is None:
             print("row is none reached", flush=True)
             return ERROR_SHELTER_LOGIN_NOT_FOUND, 404
         shelter = row._asdict()
-        print("shelter: ", shelter, flush=True)
         return {'shelter_id': shelter['shelter_id']}, 200
 
 if __name__ == '__main__':
