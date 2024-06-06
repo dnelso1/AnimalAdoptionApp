@@ -8,7 +8,8 @@ import axios from "axios"
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-   
+    
+    //switch function that handles email and password events depending on the given input parameter
     const handleChange = (event, input) => {
         switch(input){
             case "email":
@@ -23,13 +24,19 @@ function Login() {
 
     function submitChange(event) {
         event.preventDefault()
+        // check to see that email and password fields are not empty
         if (email!== "" && password !== "") {
             //axios.post("https://php-api-425323.wl.r.appspot.com", {
+            // send user login info via axios post request
             axios.post("http://localhost:80/php/login.php", {
                 email: email,
                 password: password
             }).then((response) => {
+                // set alert message or error message depending on response data sent from backend
                 if (response.data.message === 'You are logged in') {
+                    // session storage format for loginstatus and user info
+                    //references code from source below: 
+                    //https://rasleen0209.medium.com/implementing-login-case-using-localstorage-and-sessionstorage-bfddce5d2198
                     sessionStorage.setItem("loginStatus", true);
                     sessionStorage.setItem("nameData", response.data.info);
                     sessionStorage.setItem("emailObj", response.data.detail);
@@ -38,7 +45,6 @@ function Login() {
                 } else if (response.data.message === "Failed to connect to database") {
                     alert(response.data.message);
                     window.location.href = "/login";  
-
                 } else {
                     alert(response.data.errorMessage);
                     window.location.href = "/login";
