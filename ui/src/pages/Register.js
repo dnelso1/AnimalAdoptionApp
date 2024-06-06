@@ -11,6 +11,7 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    //switch function that handles email and password events depending on the given input parameter
     const handleChange = (event, input) => {
         switch(input){
             case "name":
@@ -35,6 +36,7 @@ function Register() {
                 email: email,
                 password: password
             }).then((response) => {
+                // showcase alert on browser depending on the response message that was sent from backend
                 if (response.data.message === 'You are now registered, please log in!') {
                     alert(response.data.message);
                     window.location.href = "/login";    
