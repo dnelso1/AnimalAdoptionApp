@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MdOutlineModeEdit } from "react-icons/md";
 import { IoMdAddCircle } from "react-icons/io";
 import { LuDog } from "react-icons/lu";
@@ -8,9 +8,12 @@ import axios from 'axios';
 
 
 // Shelter id will be passed from login or register page, hardcoded for testing
-const id = 4;
+// const id = 4;
 
 function ShelterPage() {
+
+    const location = useLocation();
+    const id = location.state.shelter_id;
 
     // Shelter info
     const [name, setName] = useState("");
@@ -20,7 +23,8 @@ function ShelterPage() {
     const [website, setWebsite] = useState("");
 
     // Get shelter info
-    const getShelterInfo= async() => {
+    const getShelterInfo= async(id) => {
+        console.log('id ', id);
         // const response = await axios.get(`http://127.0.0.1:8010/get-shelter/${id}`);
         const response = await axios.get(`https://server-animal-adoption-app.uc.r.appspot.com/get-shelter/${id}`);
         const data = response.data;
@@ -35,7 +39,7 @@ function ShelterPage() {
     }
 
     useEffect(() => {
-        getShelterInfo();
+        getShelterInfo(id);
     }, [])
 
     return (

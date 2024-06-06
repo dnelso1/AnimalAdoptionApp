@@ -1,8 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 function AddNewAnimalPage() {
+    const location = useLocation();
+    const shelter_id = location.state.id;
+
     const dispositions = ['Good with other animals', 'Good with children', 'Animal must be leashed at all times']
     const breeds = {
         dog: ["Golden Retriever", "German Shepard", "Labrador", "Bulldog", "Poodle", "Beagle", "Dachshund", "Boxer", "Other"],
@@ -99,6 +103,7 @@ function AddNewAnimalPage() {
 
 
         const newAnimal = {
+            "shelter_id": shelter_id,
             "name": name,
             "type": sentType,
             "breed": breed,
