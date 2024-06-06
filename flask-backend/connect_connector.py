@@ -16,16 +16,20 @@ def connect_with_connector() -> sqlalchemy.engine.base.Engine:
     # Cloud Secret Manager (https://cloud.google.com/secret-manager) to help
     # keep secrets safe.
 
-    instance_connection_name = os.environ[
-        "INSTANCE_CONNECTION_NAME"
-    ]  # e.g. 'project:region:instance'
-    db_user = os.environ["DB_USER"]  # e.g. 'my-db-user'
-    db_pass = os.environ["DB_PASS"]  # e.g. 'my-db-password'
-    db_name = os.environ["DB_NAME"]  # e.g. 'my-database'
+    # instance_connection_name = os.environ[
+    #     "INSTANCE_CONNECTION_NAME"
+    # ]  # e.g. 'project:region:instance'
+    # db_user = os.environ["DB_USER"]  # e.g. 'my-db-user'
+    # db_pass = os.environ["DB_PASS"]  # e.g. 'my-db-password'
+    # db_name = os.environ["DB_NAME"]  # e.g. 'my-database'
 
-    ip_type = IPTypes.PRIVATE if os.environ.get("PRIVATE_IP") else IPTypes.PUBLIC
+    instance_connection_name = 'mysql-animal-adoption-app:us-central1:animal-adoption-app-instance'
+    db_user = 'group-member'  # e.g. 'my-db-user'
+    db_pass = '0467'  # e.g. 'my-db-password'
+    db_name = 'animal-adoption-app-db'  # e.g. 'my-database'
+    unix_socket_path = '/cloudsql/mysql-animal-adoption-app:us-central1:animal-adoption-app-instance'
 
-    connector = Connector(ip_type)
+    connector = Connector()
 
     def getconn() -> pymysql.connections.Connection:
         conn: pymysql.connections.Connection = connector.connect(
@@ -33,7 +37,7 @@ def connect_with_connector() -> sqlalchemy.engine.base.Engine:
             "pymysql",
             user=db_user,
             password=db_pass,
-            db=db_name,
+            db=db_name
         )
         return conn
 
@@ -57,4 +61,8 @@ def connect_with_connector() -> sqlalchemy.engine.base.Engine:
         pool_recycle=1800,  # 30 minutes
         # [END_EXCLUDE]
     )
+
+    db = pool.connect()
+    db.close()
+
     return pool

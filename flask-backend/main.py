@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import os
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import sqlalchemy
@@ -21,12 +21,11 @@ ERROR_SHELTER_NOT_FOUND = {"Error": "No shelter with this id exists"}
 
 # Sets up connection pool for the app
 def init_connection_pool() -> sqlalchemy.engine.base.Engine:
-    if os.environ.get('INSTANCE_CONNECTION_NAME'):
         return connect_with_connector()
         
-    raise ValueError(
-        'Missing database connection type. Please define INSTANCE_CONNECTION_NAME'
-    )
+    # raise ValueError(
+    #     'Missing database connection type. Please define INSTANCE_CONNECTION_NAME'
+    # )
 
 # This global variable is declared with a value of `None`
 db = None
