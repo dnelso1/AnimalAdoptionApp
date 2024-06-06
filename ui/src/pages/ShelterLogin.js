@@ -16,12 +16,18 @@ function ShelterLogin() {
     }
 
     const handleSubmit = async () => {
-        // const response = await axios.get(`http://127.0.0.1:8010/shelter-login?username=${username}&password=${password}`);
-        // if (response.code === 200) {
-        //     navigate('/shelter')
-        // } else if (response.code === 404) {
-        //     console.alert('Your username or password was incorrect. Please try again or register for an account.')
-        // }
+        const response = await axios
+            .get(`https://server-animal-adoption-app.uc.r.appspot.com/shelter-login?username=${username}&password=${password}`)
+            .then((response) => {
+                console.log("shelter found")
+                const shelter_id = response.data.shelter_id
+                navigate('/shelter', {state: {shelter_id: shelter_id}});
+            })
+            .catch((error) => {
+                if (error.response?.status === 404) {
+                    window.alert('Your username or password was incorrect. Please try again or register for an account.')
+                }
+            })
     }
 
 

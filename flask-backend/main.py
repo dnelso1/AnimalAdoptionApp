@@ -59,7 +59,7 @@ def add_animal_profile():
             'INSERT INTO animal_profiles(shelter_id, name, type, breed, disposition, availability, news_item, description, gender, age) '
             'VALUES (:shelter_id, :name, :type, :breed, :disposition, :availability, :news_item, :description, :gender, :age)'
         )
-        conn.execute(stmt, parameters={'shelter_id': 4,
+        conn.execute(stmt, parameters={'shelter_id': content["shelter_id"],
                                        'name': content['name'],
                                        'type': content['type'],
                                        'breed': content['breed'],
@@ -91,6 +91,7 @@ def add_animal_profile():
 # Get a shelter
 @app.route('/get-shelter/<int:id>', methods=['GET'])
 def get_shelter(id):
+    app.logger.info("hello")
     with db.connect() as conn:
         stmt = sqlalchemy.text(
             'SELECT shelter_name, address, email, phone_number, website_link FROM shelters WHERE shelter_id=:shelter_id'
@@ -167,17 +168,23 @@ def delete_animal_profile(id):
             return ('', 204)
 
 # Verify shelter login
-app.route('/shelter-login', methods=['GET'])
+@app.route('/shelter-login', methods=['GET'])
 def shelter_login():
+    print("hi", flush=True)
     with db.connect() as conn:
         username = request.args.get('username')
         password = request.args.get('password')
         stmt = sqlalchemy.text(
-            'SELECT * FROM SHELTER WHERE username = :username AND password = :password'
+            'SELECT * FROM shelters WHERE username = :username AND password = :password'
         )
         row = conn.execute(stmt, parameters={'username': username, 'password': password}).one_or_none()
+        print("row: ", row, flush=True)
         if row is None:
+            print("row is none reached", flush=True)
             return ERROR_SHELTER_LOGIN_NOT_FOUND, 404
+        shelter = row._asdict()
+        print("shelter: ", shelter, flush=True)
+        return {'shelter_id': shelter['shelter_id']}, 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8010, debug=True)

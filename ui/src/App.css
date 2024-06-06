@@ -40,6 +40,34 @@ table {
   margin: auto;
 }
 
+.landing-title {
+  color:white;
+  font-size: 52px;
+  margin-top:0;
+}
+
+.shelter-login-form {
+  display: block;
+  background-color: white;
+  margin-left:420px;
+  margin-right:420px;
+  margin-top:200px;
+  text-align:center;
+
+}
+
+.text-form {
+  border: 1px solid black;
+  width:256px; 
+}
+
+.shelter-login-button {
+  margin:20px;
+  
+}
+
+.text-label {padding:50px;}
+
 .rescue_info {
   background-color:rgb(193, 238, 180, 0.8);
   margin-left: 30%;
