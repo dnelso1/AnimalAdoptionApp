@@ -3,6 +3,7 @@ import React from 'react';
 
 
 function Index() {
+    // get session storage variables to verify is user is logged in and to print their name on the Index page
     const loginStatus = sessionStorage.getItem("loginStatus");
     const nameData = sessionStorage.getItem("nameData");
     if (!loginStatus) {

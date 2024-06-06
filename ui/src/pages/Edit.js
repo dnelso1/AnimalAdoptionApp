@@ -7,7 +7,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import axios from "axios"
 
 function Edit() {
-
+    // check to see if user is already logged in 
     const loginStatus = sessionStorage.getItem("loginStatus");
     const emailObj = sessionStorage.getItem("emailObj");
 
@@ -19,7 +19,7 @@ function Edit() {
     const [new_name, setName] = useState('');
     const [new_email, setEmail] = useState('');
     const [new_password, setPassword] = useState('');
-
+    // switch statement that handles different user events depending on the given input
     const handleChange = (event, input) => {
         switch(input){
             case "new_name":
@@ -37,6 +37,7 @@ function Edit() {
 
     function submitChange(event) {
         event.preventDefault();
+        // check to see that at least one user property needs to be updated
         if (new_name !== "" || new_email!== "" || new_password !== "") {
             //axios.post("https://php-api-425323.wl.r.appspot.com/edit.php", {
             axios.post("http://localhost:80/php/edit.php", {
@@ -46,6 +47,7 @@ function Edit() {
                 password: new_password
             }).then((response) => {
                 if (response.data.message === 'Your profile was updated!') {
+                    // session variables need to be reset because user data was updated 
                     sessionStorage.setItem("nameData", response.data.info);
                     sessionStorage.setItem("emailObj", response.data.detail);
                     alert(response.data.message);
@@ -65,6 +67,7 @@ function Edit() {
             email: emailObj
         }).then((response) => {
             if (response.data.message === 'Your profile was deleted!') {
+                // session variables need to be cleared since profile was deleted
                 sessionStorage.clear();
                 alert(response.data.message);
                 window.location.href = "/";
