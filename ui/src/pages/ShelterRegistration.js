@@ -51,7 +51,7 @@ function ShelterRegistration() {
             "website_link": website
         }
         const response = await axios
-            .post(`http://127.0.0.1:8010/add-shelter`, data)
+            .post(`https://server-animal-adoption-app.uc.r.appspot.com/add-shelter`, data)
             .then((response) => {
                 window.alert('Your account was successfully created!')
                 const shelter_id = response.data.shelter_id

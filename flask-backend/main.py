@@ -34,7 +34,7 @@ db = init_connection_pool()
 
 @app.route('/')
 def index():
-    return 'Hello world'
+    return ''
 
 # Example route to test code
 @app.route('/get-shelter-names', methods=['GET'])
